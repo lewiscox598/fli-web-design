@@ -35,6 +35,11 @@
       crypto.subtle.digest("SHA-256", new TextEncoder().encode(input.value)).then(function (d) {
         if (hex(d) !== want) { msg.textContent = "That password is not right. Please try again."; input.select(); return; }
         try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+        // Reload once, unlocked, so the load-time animations (headline, hero opening) play in
+        // view rather than behind the screen. If storage is blocked, fall back to opening in place.
+        var stored = false;
+        try { stored = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
+        if (stored) { location.reload(); return; }
         root.classList.add("fli-unlocked");
         box.remove();
       });
