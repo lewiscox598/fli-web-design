@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<style data-fli-gate-style>html:not(.fli-unlocked) body{visibility:hidden}
+.fli-gate{visibility:visible;position:fixed;inset:0;z-index:2147483646;display:grid;place-items:center;padding:1.5rem;background:#070F1A;color:#F2F5F8;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.fli-gate form{display:grid;gap:.75rem;width:min(100%,22rem)}
+.fli-gate h1{margin:0;font-size:1.25rem;font-weight:600}
+.fli-gate p{margin:0;color:#9AA6B4;font-size:.875rem}
+.fli-gate input,.fli-gate button{min-height:44px;padding:.5rem .9rem;border-radius:4px;font:inherit}
+.fli-gate input{border:1px solid #9AA6B4;background:#0E1B2B;color:#F2F5F8}
+.fli-gate button{border:0;background:#EF7A35;color:#142C47;font-weight:600;cursor:pointer}
+.fli-gate :focus-visible{outline:2px solid #5EC3E7;outline-offset:2px}
+.fli-gate [role=alert]{color:#F2F5F8;min-height:1.5em}</style>
+<noscript><style>body::before{content:"This preview needs JavaScript.";visibility:visible;display:block;padding:2rem;font:16px system-ui,sans-serif}</style></noscript>
+<script data-fli-gate data-hash="89a20574ad93f028d2f299640c63ec89e53c76b52c54193d6ed5d059a9e084ee">
+/* Review-copy password screen. A casual barrier, NOT security: every file is still downloadable
+   and this check runs in the browser (deploy plan, P3). */
+(function () {
+  var KEY = "fli-preview-unlocked", root = document.documentElement;
+  try { if (sessionStorage.getItem(KEY) === "1") { root.classList.add("fli-unlocked"); return; } } catch (e) {}
+  var want = document.currentScript.getAttribute("data-hash");
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
+  function show() {
+    var box = document.createElement("div");
+    box.className = "fli-gate";
+    box.innerHTML = '<form><h1>Frontline Integrity: design review</h1><p>This preview is private. Enter the password you were given.</p>' +
+      '<label for="fli-gate-pw">Password</label><input id="fli-gate-pw" type="password" autocomplete="current-password" required>' +
+      '<button type="submit">Open the preview</button><p role="alert"></p></form>';
+    document.body.appendChild(box);
+    var form = box.querySelector("form"), input = box.querySelector("input"), msg = box.querySelector("[role=alert]");
+    input.focus();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      crypto.subtle.digest("SHA-256", new TextEncoder().encode(input.value)).then(function (d) {
+        if (hex(d) !== want) { msg.textContent = "That password is not right. Please try again."; input.select(); return; }
+        try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+        root.classList.add("fli-unlocked");
+        box.remove();
+      });
+    });
+  }
+  if (document.body) show(); else document.addEventListener("DOMContentLoaded", show);
+})();
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The best way to predict the future is to study the past | Frontline Integrity</title>
+  <meta name="description" content="A diligent integrity engineer is someone who leaves no stone unturned and overlays all available datasets to provide a holistic representation of the situation at any location. This should also be the case when an ILI vendor is evaluating your data.">
+  <meta name="theme-color" content="#0C1A2B">
+  <script>
+    // Theme preference and JS flag, set before first paint
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var t = localStorage.getItem("fli-theme");
+        if (t === "light" || t === "dark") d.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+  <link rel="stylesheet" href="../../styles/tokens.css">
+  <link rel="stylesheet" href="../../styles/site.css">
+  <link rel="stylesheet" href="../../styles/inner.css">
+  <link rel="icon" href="../../assets/brand/logo/fli-logo.svg" type="image/svg+xml">
+  <script src="../../js/scroll-progress.js" defer></script>
+  <script src="../../js/site.js" defer></script>
+  <script src="../../js/inner/inner.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header inverse">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="../../" aria-label="Frontline Integrity home">
+        <svg class="fli-logo fli-logo--header" viewBox="0 0 133.978 26.788" aria-hidden="true" focusable="false">
+          <g class="fli-logo__lines">
+            <path class="fli-logo__line" d="M32.197 18.443h0.551v1.469h-0.551Z"/>
+            <path class="fli-logo__line" d="M32.197 24.494h0.551v1.469h-0.551Z"/>
+            <path class="fli-logo__line" d="M0.000 24.497h32.746v0.897h-32.746Z"/>
+            <path class="fli-logo__line" d="M0.000 19.011h32.746v0.896h-32.746Z"/>
+          </g>
+          <g class="fli-logo__frontline">
+            <path class="fli-logo__letter" data-letter="F" d="M0.044 0.145L8.886 0.145L8.886 2.806L3.408 2.806L3.408 5.614L8.888 5.614L8.888 8.297L3.432 8.297L3.432 13.903L0.044 13.903L0.044 0.145"/>
+            <path class="fli-logo__letter" data-letter="R" d="M17.586 2.596L17.586 6.178L18.319 6.178C20.088 6.178 20.972 5.547 20.972 4.282C20.972 3.767 20.741 3.356 20.282 3.050C19.823 2.746 19.184 2.593 18.367 2.593L17.586 2.593L17.586 2.596M14.175 0.145L19.350 0.145C20.923 0.145 22.167 0.507 23.082 1.235C23.998 1.960 24.453 2.942 24.453 4.177C24.453 4.884 24.244 5.617 23.826 6.377C23.407 7.136 22.633 7.735 21.506 8.167L25.901 13.900L22.011 13.900L17.943 8.578L17.559 8.578L17.559 13.900L14.175 13.900L14.175 0.145"/>
+            <path class="fli-logo__letter" data-letter="O" d="M37.374 2.741C36.058 2.720 34.998 3.117 34.192 3.936C33.387 4.752 32.984 5.807 32.984 7.101C32.984 8.323 33.395 9.338 34.216 10.141C35.038 10.944 36.074 11.346 37.328 11.346C38.644 11.346 39.707 10.949 40.518 10.157C41.329 9.365 41.732 8.318 41.732 7.018C41.732 5.740 41.334 4.712 40.542 3.939C39.745 3.160 38.690 2.762 37.374 2.741M29.451 7.018C29.451 4.986 30.218 3.308 31.754 1.984C33.290 0.660 35.111 0.000 37.216 0.000C39.543 0.000 41.471 0.665 42.994 1.995C44.516 3.326 45.279 5.007 45.279 7.040C45.279 9.059 44.524 10.734 43.018 12.069C41.509 13.403 39.611 14.069 37.323 14.069C35.033 14.069 33.148 13.406 31.668 12.079C30.192 10.750 29.451 9.064 29.451 7.018"/>
+            <path class="fli-logo__letter" data-letter="N" d="M60.943 0.145L64.256 0.145L64.256 13.903L60.959 13.903L53.777 4.997L53.777 13.903L50.388 13.903L50.388 0.145L53.736 0.145L60.943 8.989L60.943 0.145"/>
+            <path class="fli-logo__letter" data-letter="T" d="M68.789 0.145L79.354 0.145L79.354 3.069L75.754 3.069L75.754 13.903L72.368 13.903L72.368 3.066L68.792 3.066L68.792 0.145L68.789 0.145"/>
+            <path class="fli-logo__letter" data-letter="L" d="M84.128 0.145L87.490 0.145L87.490 10.936L92.121 10.936L92.121 13.900L84.128 13.900L84.128 0.145"/>
+            <path class="fli-logo__letter" data-letter="I" d="M96.796 0.145h3.386v13.758h-3.386Z"/>
+            <path class="fli-logo__letter" data-letter="N" d="M116.165 0.145L119.478 0.145L119.478 13.903L116.178 13.903L108.996 4.997L108.996 13.903L105.610 13.903L105.610 0.145L108.958 0.145L116.165 8.989L116.165 0.145"/>
+            <path class="fli-logo__letter" data-letter="E" d="M125.112 0.145L133.954 0.145L133.954 2.870L128.498 2.870L128.498 5.647L133.954 5.647L133.954 8.329L128.498 8.329L128.498 11.178L133.954 11.178L133.954 13.903L125.112 13.903L125.112 0.145"/>
+          </g>
+          <g class="fli-logo__integrity">
+            <path class="fli-logo__letter" data-letter="I" d="M32.748 17.675h3.329v9.005h-3.329Z"/>
+            <path class="fli-logo__letter" data-letter="N" d="M47.341 17.694L49.481 17.694L49.481 26.662L47.352 26.662L42.715 20.857L42.715 26.662L40.529 26.662L40.529 17.694L42.691 17.694L47.341 23.459L47.341 17.694"/>
+            <path class="fli-logo__letter" data-letter="T" d="M54.778 17.694L61.598 17.694L61.598 19.600L59.273 19.600L59.273 26.662L57.087 26.662L57.087 19.600L54.778 19.600L54.778 17.694"/>
+            <path class="fli-logo__letter" data-letter="E" d="M67.016 17.694L72.722 17.694L72.722 19.469L69.202 19.469L69.202 21.278L72.722 21.278L72.722 23.026L69.202 23.026L69.202 24.884L72.722 24.884L72.722 26.659L67.016 26.659L67.016 17.694"/>
+            <path class="fli-logo__letter" data-letter="G" d="M87.149 19.640L85.696 20.843C85.393 20.378 85.017 20.032 84.569 19.801C84.119 19.570 83.653 19.457 83.164 19.457C82.372 19.457 81.682 19.723 81.100 20.258C80.514 20.789 80.224 21.418 80.224 22.142C80.224 22.913 80.517 23.563 81.100 24.100C81.685 24.634 82.388 24.903 83.213 24.903C83.660 24.903 84.091 24.803 84.507 24.602C84.920 24.401 85.253 24.025 85.506 23.474L83.104 23.474L83.104 21.726L87.785 21.726L87.785 22.886C87.785 23.482 87.554 24.124 87.090 24.809C86.625 25.493 86.016 25.995 85.259 26.312C84.502 26.629 83.736 26.788 82.966 26.788C81.563 26.788 80.382 26.339 79.422 25.442C78.458 24.546 77.977 23.437 77.977 22.116C77.977 20.864 78.474 19.793 79.465 18.907C80.455 18.018 81.647 17.575 83.044 17.575C84.821 17.570 86.193 18.260 87.149 19.640"/>
+            <path class="fli-logo__letter" data-letter="R" d="M95.542 19.291L95.542 21.627L96.015 21.627C97.156 21.627 97.728 21.216 97.728 20.392C97.728 20.056 97.580 19.788 97.282 19.589C96.984 19.390 96.573 19.291 96.047 19.291L95.542 19.291M93.343 17.693L96.683 17.693C97.698 17.693 98.501 17.930 99.092 18.402C99.682 18.875 99.978 19.514 99.978 20.319C99.978 20.778 99.843 21.256 99.572 21.753C99.301 22.250 98.802 22.639 98.077 22.921L100.915 26.659L98.404 26.659L95.781 23.190L95.534 23.190L95.534 26.659L93.348 26.659L93.348 17.693L93.343 17.693"/>
+            <path class="fli-logo__letter" data-letter="I" d="M106.432 17.694h2.186v8.968h-2.186Z"/>
+            <path class="fli-logo__letter" data-letter="T" d="M113.907 17.694L120.727 17.694L120.727 19.600L118.402 19.600L118.402 26.662L116.216 26.662L116.216 19.600L113.907 19.600L113.907 17.694"/>
+            <path class="fli-logo__letter" data-letter="Y" d="M125.359 17.694L127.778 17.694L129.650 20.473L131.548 17.694L133.978 17.694L130.750 22.468L130.750 26.662L128.589 26.662L128.589 22.468L125.359 17.694"/>
+          </g>
+        </svg>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-list">Menu</button>
+        <ul class="site-nav__list" id="site-nav-list">
+          <li><a href="../../services/">Services</a></li>
+          <li><a href="../../about/">About</a></li>
+          <li><a href="../../case-studies/">Case studies</a></li>
+          <li><a href="../../tech-hub/">Tech Hub</a></li>
+        </ul>
+      </nav>
+      <a class="site-header__contact" href="../../contact/">Contact</a>
+    </div>
+  </header>
+
+  <main id="main" class="inner" data-page="tech-hub/get-into-the-detail/" data-template="article">
+    <header class="inner-hero inner-hero--article" data-section="header" data-index="00">
+      <div class="container">
+        <p class="inner-hero__eyebrow">Part 5 of 8 · <time datetime="2023-06-06">6 June 2023</time></p>
+        <h1 class="inner-hero__title">The best way to predict the future is to study the past</h1>
+        <p class="inner-hero__lede inner-hero__lede--series">Frontline Integrity offer complete technology independence with a team possessing over 50 years of combined multi-discipline asset integrity management and ILI technology expertise with both pipeline operators and technology vendors. In this series: How to Maximise the value from your crack-detection ILI campaign, we have 8 articles which focus on various key stages of the process.</p>
+        <p class="inner-hero__lede">This article (#5 of 8) focuses on the Data Evaluation stage.</p>
+      </div>
+    </header>
+
+    <section class="inner-section band inner-section--stages" data-section="stages" data-index="01" aria-labelledby="stages-title">
+      <div class="container inner-section__grid" data-reveal>
+        <p class="inner-section__index" aria-hidden="true">01</p>
+        <h2 class="inner-section__title" id="stages-title"><span data-draft>The eight-part series</span></h2>
+        <div class="inner-section__body">
+        <nav class="inner-strip" aria-label="The eight-part series">
+        <ol class="inner-strip__list" role="list">
+          <li class="inner-strip__part"><a href="../../tech-hub/how-many-needles-are-in-my-haystack/"><span class="inner-strip__n">01</span> <span class="inner-strip__title">Crack susceptibility – How many needles are in my haystack?</span></a></li>
+          <li class="inner-strip__part"><a href="../../tech-hub/selecting-the-right-tool-for-the-job/"><span class="inner-strip__n">02</span> <span class="inner-strip__title">Selecting the right tool for the job</span></a></li>
+          <li class="inner-strip__part"><a href="../../tech-hub/ask-and-you-shall-receive/"><span class="inner-strip__n">03</span> <span class="inner-strip__title">The best preparation for tomorrow is doing your best today</span></a></li>
+          <li class="inner-strip__part"><a href="../../tech-hub/thumbs-up-or-thumbs-down/"><span class="inner-strip__n">04</span> <span class="inner-strip__title">Data quality – Thumbs up or thumbs down?</span></a></li>
+          <li class="inner-strip__part" data-current><a href="../../tech-hub/get-into-the-detail/" aria-current="step"><span class="inner-strip__n">05</span> <span class="inner-strip__title">The best way to predict the future is to study the past</span></a></li>
+          <li class="inner-strip__part"><a href="../../tech-hub/reports-incoming/"><span class="inner-strip__n">06</span> <span class="inner-strip__title">Reports incoming!</span></a></li>
+          <li class="inner-strip__part"><a href="../../tech-hub/how-did-i-do/"><span class="inner-strip__n">07</span> <span class="inner-strip__title">How did I do?</span></a></li>
+          <li class="inner-strip__part"><a href="../../tech-hub/safety-in-numbers/"><span class="inner-strip__n">08</span> <span class="inner-strip__title">Safety in numbers</span></a></li>
+        </ol>
+        </nav>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-section band inner-section--body" data-section="body" aria-label="The best way to predict the future is to study the past">
+      <div class="container">
+        <div class="inner-prose inner-article">
+          <p>To maximise the value of any ILI campaign, the quality of data is of course important, but equally as critical is knowing how to interpret the results to ensure balanced, yet safe, integrity management decision making. This is particularly important for crack detection ILI, where the true integrity threats can be challenging to extract from the reported overall population of ‘crack-like’ anomalies. Using all available threat-related data to support the interpretation of the ILI results is also a central theme in the current industry best practice for crack management, API 1176.</p>
+          <p>One aspect that is commonly overlooked by ILI vendors, is the value of integrating historical data into the evaluation process. This could be in the form of previous ILI signal data (from multiple technologies), verification points, repair records, previous failures or even the operators current risk profile for a particular threat.</p>
+          <p>Incorporation of historical data into the current ILI campaign will ultimately improve the overall output. Context is provided, by focusing both the Pipeline Operator and the ILI vendor on key threat locations in the pipeline and how integrity threats may have propagated within it, giving the ability to scrutinise the credibility of anomalies found.</p>
+          <p>At Frontline Integrity, Pipeline Operators place us into an ILI project to ensure that the pipeline history is not lost. We take the time to understand the Customer’s specific integrity management concerns and get up to speed quickly on the asset, working closely with the ILI vendor during the entire evaluation process to ensure no stone is left unturned. Examples of the data we typically integrate into a project are listed below:</p>
+          <ul>
+            <li>Historical field verification data – to support not only the understanding of the integrity threat but also provide an understanding of historical tool performance where the same uncertainties may also exist in the current run. Using relevant historical ILI tool performance to support the understanding of a future run performance is also a key part of the ILI verification process contained in API 1163 (ensuring an ILI system has been selected, prepared and run in a manner that is capable of achieving the stated vendor performance specification).</li>
+            <li>Repair records - to ensure there is no attempt to address features that have already been remediated (e.g. recoating to arrest SCC growth)</li>
+            <li>Previous ILI data (data quality, reported features / signals) – to provide consistency with the current dataset and review for evidence of change. To understand where repeat areas of data degradation may have occurred and assess their associated impact.</li>
+            <li>Overall Risk, susceptibility or consequence profiles - to assist in the prioritisation of reported features.</li>
+          </ul>
+          <p>Unfortunately, in our experience, the integration of the above is not standard practice and can lead to avoidable uncertainty in the integrity-management response.</p>
+          <p>Let’s look at an example and the questions that should be asked as we dive deeper to understand the situation at hand:</p>
+          <h3>It has been reported that a corrosion feature is now 3 mm deeper than its reported depth in the ILI listing 3 years ago.</h3>
+          <p>Every pipeline is different, but leveraging historic datasets can play a significant role in optimising the ILI campaign output, ultimately resulting in improved integrity-management decision making.</p>
+          <p>Why wait 6 months for a report and then ask if your previous data was integrated? Take action and get us involved at the evaluation stage.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-section band inner-section--services" data-section="services" data-index="02" aria-labelledby="services-title">
+      <div class="container inner-section__grid" data-reveal>
+        <p class="inner-section__index" aria-hidden="true">02</p>
+        <h2 class="inner-section__title" id="services-title">How can we help Operators and what value do the Frontline Integrity team add?</h2>
+        <div class="inner-section__body">
+        <div class="inner-prose">
+          <div class="inner-table" role="region" aria-label="Services offered and Added value" tabindex="0">
+            <table>
+              <thead><tr><th scope="col">Services offered</th><th scope="col">Added value</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Review of all historical threat related information against ILI results to assist with interpretation and integrity management decision-making.</th><td>We always ensure all historical data is utilised to its maximum potential, meaning no stone is left unturned and maximising the value of the ILI dataset to the management of the threat.</td></tr>
+                <tr><th scope="row">Development of a data-integration strategy and management of ILI vendors to ensure all relevant integrity related data is integrated into an ILI campaign.</th><td>By developing an ILI data-integration strategy, you have the basis to make sure all future inspection campaigns are leveraging historical data to maximise run-value.</td></tr>
+                <tr><th scope="row">Interrogation of ILI signal data and data evaluation process.</th><td>Improves confidence in the output and consistency of the data evaluation process with respect to the integrity threat.</td></tr>
+                <tr><th scope="row">Threat propagation review.</th><td>Critical review of any evidence of anomaly growth in the pipeline from repeat ILI inspections and other supporting information.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="inner-services__contact"><a class="button button--primary" href="../../contact/">Get in touch today</a></p>
+        </div>
+      </div>
+    </section>
+
+    <nav class="inner-section inner-section--nav" data-section="nav" aria-label="Series navigation">
+      <div class="container inner-pager">
+        <a class="inner-pager__prev" href="../../tech-hub/thumbs-up-or-thumbs-down/" rel="prev"><span class="inner-pager__label">Previous</span> <span class="inner-pager__title">Data quality – Thumbs up or thumbs down?</span></a>
+        <a class="inner-pager__all" href="../../tech-hub/">All articles</a>
+        <a class="inner-pager__next" href="../../tech-hub/reports-incoming/" rel="next"><span class="inner-pager__label">Next</span> <span class="inner-pager__title">Reports incoming!</span></a>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="site-footer inverse">
+    <div class="container">
+      <div class="site-footer__top">
+        <a class="site-footer__logo" href="../../" aria-label="Frontline Integrity home">
+          <svg class="fli-logo fli-logo--footer" viewBox="0 0 133.978 26.788" aria-hidden="true" focusable="false">
+          <g class="fli-logo__lines">
+            <path class="fli-logo__line" d="M32.197 18.443h0.551v1.469h-0.551Z"/>
+            <path class="fli-logo__line" d="M32.197 24.494h0.551v1.469h-0.551Z"/>
+            <path class="fli-logo__line" d="M0.000 24.497h32.746v0.897h-32.746Z"/>
+            <path class="fli-logo__line" d="M0.000 19.011h32.746v0.896h-32.746Z"/>
+          </g>
+          <g class="fli-logo__frontline">
+            <path class="fli-logo__letter" data-letter="F" d="M0.044 0.145L8.886 0.145L8.886 2.806L3.408 2.806L3.408 5.614L8.888 5.614L8.888 8.297L3.432 8.297L3.432 13.903L0.044 13.903L0.044 0.145"/>
+            <path class="fli-logo__letter" data-letter="R" d="M17.586 2.596L17.586 6.178L18.319 6.178C20.088 6.178 20.972 5.547 20.972 4.282C20.972 3.767 20.741 3.356 20.282 3.050C19.823 2.746 19.184 2.593 18.367 2.593L17.586 2.593L17.586 2.596M14.175 0.145L19.350 0.145C20.923 0.145 22.167 0.507 23.082 1.235C23.998 1.960 24.453 2.942 24.453 4.177C24.453 4.884 24.244 5.617 23.826 6.377C23.407 7.136 22.633 7.735 21.506 8.167L25.901 13.900L22.011 13.900L17.943 8.578L17.559 8.578L17.559 13.900L14.175 13.900L14.175 0.145"/>
+            <path class="fli-logo__letter" data-letter="O" d="M37.374 2.741C36.058 2.720 34.998 3.117 34.192 3.936C33.387 4.752 32.984 5.807 32.984 7.101C32.984 8.323 33.395 9.338 34.216 10.141C35.038 10.944 36.074 11.346 37.328 11.346C38.644 11.346 39.707 10.949 40.518 10.157C41.329 9.365 41.732 8.318 41.732 7.018C41.732 5.740 41.334 4.712 40.542 3.939C39.745 3.160 38.690 2.762 37.374 2.741M29.451 7.018C29.451 4.986 30.218 3.308 31.754 1.984C33.290 0.660 35.111 0.000 37.216 0.000C39.543 0.000 41.471 0.665 42.994 1.995C44.516 3.326 45.279 5.007 45.279 7.040C45.279 9.059 44.524 10.734 43.018 12.069C41.509 13.403 39.611 14.069 37.323 14.069C35.033 14.069 33.148 13.406 31.668 12.079C30.192 10.750 29.451 9.064 29.451 7.018"/>
+            <path class="fli-logo__letter" data-letter="N" d="M60.943 0.145L64.256 0.145L64.256 13.903L60.959 13.903L53.777 4.997L53.777 13.903L50.388 13.903L50.388 0.145L53.736 0.145L60.943 8.989L60.943 0.145"/>
+            <path class="fli-logo__letter" data-letter="T" d="M68.789 0.145L79.354 0.145L79.354 3.069L75.754 3.069L75.754 13.903L72.368 13.903L72.368 3.066L68.792 3.066L68.792 0.145L68.789 0.145"/>
+            <path class="fli-logo__letter" data-letter="L" d="M84.128 0.145L87.490 0.145L87.490 10.936L92.121 10.936L92.121 13.900L84.128 13.900L84.128 0.145"/>
+            <path class="fli-logo__letter" data-letter="I" d="M96.796 0.145h3.386v13.758h-3.386Z"/>
+            <path class="fli-logo__letter" data-letter="N" d="M116.165 0.145L119.478 0.145L119.478 13.903L116.178 13.903L108.996 4.997L108.996 13.903L105.610 13.903L105.610 0.145L108.958 0.145L116.165 8.989L116.165 0.145"/>
+            <path class="fli-logo__letter" data-letter="E" d="M125.112 0.145L133.954 0.145L133.954 2.870L128.498 2.870L128.498 5.647L133.954 5.647L133.954 8.329L128.498 8.329L128.498 11.178L133.954 11.178L133.954 13.903L125.112 13.903L125.112 0.145"/>
+          </g>
+          <g class="fli-logo__integrity">
+            <path class="fli-logo__letter" data-letter="I" d="M32.748 17.675h3.329v9.005h-3.329Z"/>
+            <path class="fli-logo__letter" data-letter="N" d="M47.341 17.694L49.481 17.694L49.481 26.662L47.352 26.662L42.715 20.857L42.715 26.662L40.529 26.662L40.529 17.694L42.691 17.694L47.341 23.459L47.341 17.694"/>
+            <path class="fli-logo__letter" data-letter="T" d="M54.778 17.694L61.598 17.694L61.598 19.600L59.273 19.600L59.273 26.662L57.087 26.662L57.087 19.600L54.778 19.600L54.778 17.694"/>
+            <path class="fli-logo__letter" data-letter="E" d="M67.016 17.694L72.722 17.694L72.722 19.469L69.202 19.469L69.202 21.278L72.722 21.278L72.722 23.026L69.202 23.026L69.202 24.884L72.722 24.884L72.722 26.659L67.016 26.659L67.016 17.694"/>
+            <path class="fli-logo__letter" data-letter="G" d="M87.149 19.640L85.696 20.843C85.393 20.378 85.017 20.032 84.569 19.801C84.119 19.570 83.653 19.457 83.164 19.457C82.372 19.457 81.682 19.723 81.100 20.258C80.514 20.789 80.224 21.418 80.224 22.142C80.224 22.913 80.517 23.563 81.100 24.100C81.685 24.634 82.388 24.903 83.213 24.903C83.660 24.903 84.091 24.803 84.507 24.602C84.920 24.401 85.253 24.025 85.506 23.474L83.104 23.474L83.104 21.726L87.785 21.726L87.785 22.886C87.785 23.482 87.554 24.124 87.090 24.809C86.625 25.493 86.016 25.995 85.259 26.312C84.502 26.629 83.736 26.788 82.966 26.788C81.563 26.788 80.382 26.339 79.422 25.442C78.458 24.546 77.977 23.437 77.977 22.116C77.977 20.864 78.474 19.793 79.465 18.907C80.455 18.018 81.647 17.575 83.044 17.575C84.821 17.570 86.193 18.260 87.149 19.640"/>
+            <path class="fli-logo__letter" data-letter="R" d="M95.542 19.291L95.542 21.627L96.015 21.627C97.156 21.627 97.728 21.216 97.728 20.392C97.728 20.056 97.580 19.788 97.282 19.589C96.984 19.390 96.573 19.291 96.047 19.291L95.542 19.291M93.343 17.693L96.683 17.693C97.698 17.693 98.501 17.930 99.092 18.402C99.682 18.875 99.978 19.514 99.978 20.319C99.978 20.778 99.843 21.256 99.572 21.753C99.301 22.250 98.802 22.639 98.077 22.921L100.915 26.659L98.404 26.659L95.781 23.190L95.534 23.190L95.534 26.659L93.348 26.659L93.348 17.693L93.343 17.693"/>
+            <path class="fli-logo__letter" data-letter="I" d="M106.432 17.694h2.186v8.968h-2.186Z"/>
+            <path class="fli-logo__letter" data-letter="T" d="M113.907 17.694L120.727 17.694L120.727 19.600L118.402 19.600L118.402 26.662L116.216 26.662L116.216 19.600L113.907 19.600L113.907 17.694"/>
+            <path class="fli-logo__letter" data-letter="Y" d="M125.359 17.694L127.778 17.694L129.650 20.473L131.548 17.694L133.978 17.694L130.750 22.468L130.750 26.662L128.589 26.662L128.589 22.468L125.359 17.694"/>
+          </g>
+        </svg>
+        </a>
+        <nav class="site-footer__cols" aria-label="Footer">
+          <div>
+            <h2 class="site-footer__head">Services</h2>
+            <ul>
+              <li><a href="../../services/">Pipeline integrity consultancy</a></li>
+              <li><a href="../../services/pims/">PIMS</a></li>
+              <li><a href="../../services/software/">Software</a></li>
+              <li><a href="../../services/additional-engineering/">Additional engineering</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="site-footer__head">Company</h2>
+            <ul>
+              <li><a href="../../about/">About</a></li>
+              <li><a href="../../case-studies/">Case studies</a></li>
+              <li><a href="../../tech-hub/">Tech Hub</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="site-footer__head">Contact</h2>
+            <ul>
+              <li><a href="mailto:enquiries@frontlineintegrity.co.uk">enquiries@frontlineintegrity.co.uk</a></li>
+              <li><a href="tel:+441918161574">+44 (0)191 816 1574</a></li>
+              <li><address>3 Kingfisher Way, Silverlink Business Park, Newcastle upon Tyne, NE28 9NX</address></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="site-footer__head">Follow</h2>
+            <ul>
+              <li><a href="https://www.linkedin.com/company/frontline-integrity">LinkedIn</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="site-footer__meta">
+        <p>Frontline Integrity Ltd. Registered office: 3 Kingfisher Way, Silverlink Business Park, Newcastle upon Tyne, NE28 9NX, UK. Company number 12549777.</p>
+        <ul>
+          <li><a href="../../privacy/">Privacy policy</a></li>
+          <li><a href="../../cookies/">Cookie policy</a></li>
+          <li><button class="theme-toggle" type="button" aria-pressed="false">Dark mode</button></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="../../shared/version-switcher.js"></script>  <!-- review tool: remove before launch -->
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+ "poster_1440": {
+  "size": [
+   1440,
+   836
+  ],
+  "kb": 190,
+  "quality": 72,
+  "within_limit": true
+ },
+ "poster_800": {
+  "size": [
+   800,
+   1472
+  ],
+  "kb": 116,
+  "quality": 80,
+  "within_limit": true
+ },
+ "bright_hex": "#0D2C43",
+ "bright_luminance": 0.0229
+}

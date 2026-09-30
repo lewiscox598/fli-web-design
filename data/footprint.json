@@ -1,0 +1,157 @@
+{
+  "sample": true,
+  "countries": [
+    {
+      "country": "United Kingdom",
+      "anchor": [
+        -2,
+        53.5
+      ],
+      "first_year": null
+    },
+    {
+      "country": "France",
+      "anchor": [
+        2.5,
+        46.5
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Belgium",
+      "anchor": [
+        4.6,
+        50.6
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Hungary",
+      "anchor": [
+        19.4,
+        47.2
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Morocco",
+      "anchor": [
+        -6.5,
+        32
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Ghana",
+      "anchor": [
+        -1,
+        7.9
+      ],
+      "first_year": null
+    },
+    {
+      "country": "South Africa",
+      "anchor": [
+        24.5,
+        -29
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Brazil",
+      "anchor": [
+        -51.9,
+        -10.5
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Argentina",
+      "anchor": [
+        -64.5,
+        -35
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Chile",
+      "anchor": [
+        -71,
+        -30.5
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Mexico",
+      "anchor": [
+        -102.5,
+        23.6
+      ],
+      "first_year": null
+    },
+    {
+      "country": "United States",
+      "anchor": [
+        -98.5,
+        39.5
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Canada",
+      "anchor": [
+        -106,
+        56
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Iraq",
+      "anchor": [
+        43.7,
+        33.2
+      ],
+      "first_year": null
+    },
+    {
+      "country": "United Arab Emirates",
+      "anchor": [
+        54.3,
+        24
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Pakistan",
+      "anchor": [
+        69.3,
+        30
+      ],
+      "first_year": null
+    },
+    {
+      "country": "India",
+      "anchor": [
+        79,
+        21.5
+      ],
+      "first_year": null
+    },
+    {
+      "country": "Australia",
+      "anchor": [
+        134,
+        -25.5
+      ],
+      "first_year": null
+    },
+    {
+      "country": "New Zealand",
+      "anchor": [
+        172.5,
+        -41.5
+      ],
+      "first_year": null
+    }
+  ]
+}

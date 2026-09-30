@@ -1,0 +1,30 @@
+GSAP 3.15.0, vendored from the npm package "gsap".
+The package declares its licence as: Standard 'no charge' license: https://gsap.com/standard-license.
+The package ships no separate licence file. Each file below keeps its own licence header:
+
+gsap.min.js:
+/*!
+ * GSAP 3.15.0
+ * https://gsap.com
+ * 
+ * @license Copyright 2026, GreenSock. All rights reserved.
+ * Subject to the terms at https://gsap.com/standard-license.
+ * @author: Jack Doyle, jack@greensock.com
+ */
+ScrollTrigger.min.js:
+/*!
+ * ScrollTrigger 3.15.0
+ * https://gsap.com
+ * 
+ * @license Copyright 2026, GreenSock. All rights reserved.
+ * Subject to the terms at https://gsap.com/standard-license.
+ * @author: Jack Doyle, jack@greensock.com
+ */
+SplitText.min.js:
+/*!
+ * SplitText 3.15.0
+ * https://gsap.com
+ *
+ * @license Copyright 2026, GreenSock. All rights reserved. Subject to the terms at https://gsap.com/standard-license.
+ * @author: Jack Doyle
+ */

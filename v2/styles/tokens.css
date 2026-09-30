@@ -1,0 +1,80 @@
+/*
+  v2 "Signal from noise" tokens. Values come from the FLI palette sheet (assets/brand/colours.md)
+  and derived navy tints; v1's styles/tokens.css is not imported (read-only for v2).
+
+  Dark is the default for every visitor (Lewis, D4). The light scheme is opt-in through the footer
+  toggle (html[data-theme="light"]). The hero stays dark in both.
+*/
+:root {
+  /* Palette */
+  --fli-navy: #142C47;
+  --fli-teal: #5EC3E7;
+  --fli-teal-deep: #046466;
+  --fli-orange: #EF7A35;
+  --white: #FFFFFF;
+
+  /* Dark scheme (default) */
+  --canvas: #070F1A;
+  --surface: #0E1B2B;
+  --text: #F2F5F8;
+  --text-muted: #9AA6B4;
+  --line: #1E2E42;
+  --data: var(--fli-teal);
+  --critical: var(--fli-orange);
+  --on-critical: var(--fli-navy);
+  --action-bg: var(--fli-orange);      /* the one primary action: orange on dark */
+  --action-text: var(--fli-navy);
+  --critical-edge: var(--fli-orange); /* outline for orange data marks */
+  --focus: var(--fli-teal);
+
+  /* Hero (always dark) */
+  --hero-canvas: #070F1A;
+  --hero-text: #F2F5F8;
+  --hero-muted: #9AA6B4;
+
+  /* Type */
+  --font-sans: "Mona Sans", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Martian Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --display-xl: clamp(2.75rem, 1.4rem + 6vw, 7.5rem);
+  --display-l: clamp(2.25rem, 1.3rem + 4vw, 5.25rem);
+  --display-m: clamp(1.75rem, 1.2rem + 2.2vw, 3.25rem);
+  --display-s: clamp(1.25rem, 1rem + 0.9vw, 1.75rem);
+  --text-l: clamp(1.0625rem, 1rem + 0.3vw, 1.3125rem);
+  --text-m: 1rem;
+  --text-s: 0.875rem;
+  --mono-s: 0.75rem;
+  --mono-xs: 0.6875rem;
+  --tracking-display: -0.03em;
+  --tracking-mono: 0.04em;
+  --leading-display: 0.98;
+  --leading-body: 1.55;
+
+  /* Space and grid */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem);
+  --page-max: 90rem;
+  --band-pad: clamp(5rem, 3rem + 8vw, 11rem);
+  --grid-gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --radius: 4px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-reveal: 900ms;
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --canvas: #F4F6F8;
+  --surface: #FFFFFF;
+  --text: #142C47;
+  --text-muted: #56657A;
+  --line: #D9DEE4;
+  --data: var(--fli-teal-deep);
+  --focus: var(--fli-teal-deep);
+  --action-bg: var(--fli-navy);        /* on light, navy: orange on light is 2.58:1 (as v1's rule) */
+  --action-text: var(--white);
+  --critical-edge: var(--fli-navy);   /* orange on light is 2.58:1, so orange marks take a navy edge */
+  color-scheme: light;
+}

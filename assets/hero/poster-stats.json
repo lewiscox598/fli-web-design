@@ -1,0 +1,30 @@
+{
+ "poster_1440": {
+  "size": [
+   1440,
+   836
+  ],
+  "kb": 11,
+  "quality": 80,
+  "within_limit": true
+ },
+ "poster_800": {
+  "size": [
+   800,
+   1472
+  ],
+  "kb": 9,
+  "quality": 80,
+  "within_limit": true
+ },
+ "bright_hex": "#A8B0BA",
+ "bright_luminance": 0.4292,
+ "logo_teal_ratio": 2.11,
+ "logo_white_ratio": 9.03,
+ "logo_teal_hex": "#5DBEE1",
+ "coating_hex": "#54677E",
+ "logo_pixels": {
+  "teal": 18078,
+  "white": 8176
+ }
+}
