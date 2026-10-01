@@ -183,7 +183,6 @@ p { text-wrap: pretty; }
 
 @media (prefers-reduced-motion: no-preference) {
   .js .hero[data-pin] { height: 280svh; }   /* slower, Lewis 28 Sep */
-  .js .hero[data-hero-mode="inspect"][data-pin] { height: 340svh; }   /* inspect about 20 percent slower, Lewis 30 Sep */
   .js .hero__sticky { position: sticky; top: 4rem; height: calc(100svh - 4rem); }
   .js .hero--animated .hero__copy {
     opacity: var(--hero-copy, 0);
@@ -201,7 +200,6 @@ p { text-wrap: pretty; }
 }
 @media (max-width: 639.98px) and (prefers-reduced-motion: no-preference) {
   .js .hero[data-pin] { height: 230svh; }
-  .js .hero[data-hero-mode="inspect"][data-pin] { height: 280svh; }
 }
 
 /* Hero info box: follows the highlighted feature (js/hero-pipe/mount.js). Illustrative data. */

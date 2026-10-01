@@ -21,9 +21,18 @@ export function mountStages({ gsap }) {
     stages.forEach((st) => prime([...st.querySelectorAll(".draw")]));
     gsap.set(section.querySelectorAll(".dot"), { scale: 0, transformOrigin: "50% 50%" });
     const distance = () => Math.max(0, list.scrollWidth - viewport.clientWidth);
+    // On short windows the whole section is taller than the space under the header, so pin it
+    // further down by the overflow: the stages stay fully in view, the heading rises out instead.
+    // Never by more than the heading's own depth, so the stages never slide under the header.
+    const shift = () => {
+      const top = section.getBoundingClientRect().top;
+      const vp = viewport.getBoundingClientRect();
+      const overflow = vp.bottom - top + 24 - (window.innerHeight - header());
+      return Math.round(Math.min(Math.max(0, overflow), vp.top - top));
+    };
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: section, start: () => `top ${header()}px`, end: () => `+=${distance() + window.innerHeight * 0.5}`,
+        trigger: section, start: () => `top+=${shift()} ${header()}px`, end: () => `+=${distance() + window.innerHeight * 0.5}`,
         scrub: 0.6, pin: true, invalidateOnRefresh: true,
       },
     });

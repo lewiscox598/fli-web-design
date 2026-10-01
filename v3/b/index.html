@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<style data-fli-gate-style>html:not(.fli-unlocked) body{visibility:hidden}
+.fli-gate{visibility:visible;position:fixed;inset:0;z-index:2147483646;display:grid;place-items:center;padding:1.5rem;background:#070F1A;color:#F2F5F8;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.fli-gate form{display:grid;gap:.75rem;width:min(100%,22rem)}
+.fli-gate h1{margin:0;font-size:1.25rem;font-weight:600}
+.fli-gate p{margin:0;color:#9AA6B4;font-size:.875rem}
+.fli-gate input,.fli-gate button{min-height:44px;padding:.5rem .9rem;border-radius:4px;font:inherit}
+.fli-gate input{border:1px solid #9AA6B4;background:#0E1B2B;color:#F2F5F8}
+.fli-gate button{border:0;background:#EF7A35;color:#142C47;font-weight:600;cursor:pointer}
+.fli-gate :focus-visible{outline:2px solid #5EC3E7;outline-offset:2px}
+.fli-gate [role=alert]{color:#F2F5F8;min-height:1.5em}</style>
+<noscript><style>body::before{content:"This preview needs JavaScript.";visibility:visible;display:block;padding:2rem;font:16px system-ui,sans-serif}</style></noscript>
+<script data-fli-gate data-hash="89a20574ad93f028d2f299640c63ec89e53c76b52c54193d6ed5d059a9e084ee">
+/* Review-copy password screen. A casual barrier, NOT security: every file is still downloadable
+   and this check runs in the browser (deploy plan, P3). */
+(function () {
+  var KEY = "fli-preview-unlocked", root = document.documentElement;
+  try { if (sessionStorage.getItem(KEY) === "1") { root.classList.add("fli-unlocked"); return; } } catch (e) {}
+  var want = document.currentScript.getAttribute("data-hash");
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
+  function show() {
+    var box = document.createElement("div");
+    box.className = "fli-gate";
+    box.innerHTML = '<form><h1>Frontline Integrity: design review</h1><p>This preview is private. Enter the password you were given.</p>' +
+      '<label for="fli-gate-pw">Password</label><input id="fli-gate-pw" type="password" autocomplete="current-password" required>' +
+      '<button type="submit">Open the preview</button><p role="alert"></p></form>';
+    document.body.appendChild(box);
+    var form = box.querySelector("form"), input = box.querySelector("input"), msg = box.querySelector("[role=alert]");
+    input.focus();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      crypto.subtle.digest("SHA-256", new TextEncoder().encode(input.value)).then(function (d) {
+        if (hex(d) !== want) { msg.textContent = "That password is not right. Please try again."; input.select(); return; }
+        try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+        // Reload once, unlocked, so the load-time animations (headline, hero opening) play in
+        // view rather than behind the screen. If storage is blocked, fall back to opening in place.
+        var stored = false;
+        try { stored = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
+        if (stored) { location.reload(); return; }
+        root.classList.add("fli-unlocked");
+        box.remove();
+      });
+    });
+  }
+  if (document.body) show(); else document.addEventListener("DOMContentLoaded", show);
+})();
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frontline Integrity | Find the few that matter</title>
+  <meta name="description" content="Pipeline integrity management from experienced independent consultants with expertise in pipeline crack management and crack detection inspections (EMAT and Ultrasonic).">
+  <meta name="theme-color" content="#F2F3F1">
+  <script>
+    // Before first paint: with motion allowed, the axis waits for its sweep (b.css shows it anyway
+    // after 3 s, so a failed script never hides it). The readout is written for the matched feature.
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("js-motion");
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="b.css">
+  <link rel="icon" href="../../assets/brand/logo/fli-logo.svg" type="image/svg+xml">
+  <script src="../../vendor/gsap/gsap.min.js" defer></script>
+  <script src="../../vendor/gsap/ScrollTrigger.min.js" defer></script>
+  <link rel="modulepreload" href="js/runs.js">
+  <link rel="modulepreload" href="../shared/motion.js">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="site-header__logo" href="./" aria-label="Frontline Integrity home">
+      <svg class="fli-logo fli-logo--header" viewBox="0 0 133.978 26.788" aria-hidden="true" focusable="false">
+          <g class="fli-logo__lines">
+            <path class="fli-logo__line" d="M32.197 18.443h0.551v1.469h-0.551Z"/>
+            <path class="fli-logo__line" d="M32.197 24.494h0.551v1.469h-0.551Z"/>
+            <path class="fli-logo__line" d="M0.000 24.497h32.746v0.897h-32.746Z"/>
+            <path class="fli-logo__line" d="M0.000 19.011h32.746v0.896h-32.746Z"/>
+          </g>
+          <g class="fli-logo__frontline">
+            <path class="fli-logo__letter" data-letter="F" d="M0.044 0.145L8.886 0.145L8.886 2.806L3.408 2.806L3.408 5.614L8.888 5.614L8.888 8.297L3.432 8.297L3.432 13.903L0.044 13.903L0.044 0.145"/>
+            <path class="fli-logo__letter" data-letter="R" d="M17.586 2.596L17.586 6.178L18.319 6.178C20.088 6.178 20.972 5.547 20.972 4.282C20.972 3.767 20.741 3.356 20.282 3.050C19.823 2.746 19.184 2.593 18.367 2.593L17.586 2.593L17.586 2.596M14.175 0.145L19.350 0.145C20.923 0.145 22.167 0.507 23.082 1.235C23.998 1.960 24.453 2.942 24.453 4.177C24.453 4.884 24.244 5.617 23.826 6.377C23.407 7.136 22.633 7.735 21.506 8.167L25.901 13.900L22.011 13.900L17.943 8.578L17.559 8.578L17.559 13.900L14.175 13.900L14.175 0.145"/>
+            <path class="fli-logo__letter" data-letter="O" d="M37.374 2.741C36.058 2.720 34.998 3.117 34.192 3.936C33.387 4.752 32.984 5.807 32.984 7.101C32.984 8.323 33.395 9.338 34.216 10.141C35.038 10.944 36.074 11.346 37.328 11.346C38.644 11.346 39.707 10.949 40.518 10.157C41.329 9.365 41.732 8.318 41.732 7.018C41.732 5.740 41.334 4.712 40.542 3.939C39.745 3.160 38.690 2.762 37.374 2.741M29.451 7.018C29.451 4.986 30.218 3.308 31.754 1.984C33.290 0.660 35.111 0.000 37.216 0.000C39.543 0.000 41.471 0.665 42.994 1.995C44.516 3.326 45.279 5.007 45.279 7.040C45.279 9.059 44.524 10.734 43.018 12.069C41.509 13.403 39.611 14.069 37.323 14.069C35.033 14.069 33.148 13.406 31.668 12.079C30.192 10.750 29.451 9.064 29.451 7.018"/>
+            <path class="fli-logo__letter" data-letter="N" d="M60.943 0.145L64.256 0.145L64.256 13.903L60.959 13.903L53.777 4.997L53.777 13.903L50.388 13.903L50.388 0.145L53.736 0.145L60.943 8.989L60.943 0.145"/>
+            <path class="fli-logo__letter" data-letter="T" d="M68.789 0.145L79.354 0.145L79.354 3.069L75.754 3.069L75.754 13.903L72.368 13.903L72.368 3.066L68.792 3.066L68.792 0.145L68.789 0.145"/>
+            <path class="fli-logo__letter" data-letter="L" d="M84.128 0.145L87.490 0.145L87.490 10.936L92.121 10.936L92.121 13.900L84.128 13.900L84.128 0.145"/>
+            <path class="fli-logo__letter" data-letter="I" d="M96.796 0.145h3.386v13.758h-3.386Z"/>
+            <path class="fli-logo__letter" data-letter="N" d="M116.165 0.145L119.478 0.145L119.478 13.903L116.178 13.903L108.996 4.997L108.996 13.903L105.610 13.903L105.610 0.145L108.958 0.145L116.165 8.989L116.165 0.145"/>
+            <path class="fli-logo__letter" data-letter="E" d="M125.112 0.145L133.954 0.145L133.954 2.870L128.498 2.870L128.498 5.647L133.954 5.647L133.954 8.329L128.498 8.329L128.498 11.178L133.954 11.178L133.954 13.903L125.112 13.903L125.112 0.145"/>
+          </g>
+          <g class="fli-logo__integrity">
+            <path class="fli-logo__letter" data-letter="I" d="M32.748 17.675h3.329v9.005h-3.329Z"/>
+            <path class="fli-logo__letter" data-letter="N" d="M47.341 17.694L49.481 17.694L49.481 26.662L47.352 26.662L42.715 20.857L42.715 26.662L40.529 26.662L40.529 17.694L42.691 17.694L47.341 23.459L47.341 17.694"/>
+            <path class="fli-logo__letter" data-letter="T" d="M54.778 17.694L61.598 17.694L61.598 19.600L59.273 19.600L59.273 26.662L57.087 26.662L57.087 19.600L54.778 19.600L54.778 17.694"/>
+            <path class="fli-logo__letter" data-letter="E" d="M67.016 17.694L72.722 17.694L72.722 19.469L69.202 19.469L69.202 21.278L72.722 21.278L72.722 23.026L69.202 23.026L69.202 24.884L72.722 24.884L72.722 26.659L67.016 26.659L67.016 17.694"/>
+            <path class="fli-logo__letter" data-letter="G" d="M87.149 19.640L85.696 20.843C85.393 20.378 85.017 20.032 84.569 19.801C84.119 19.570 83.653 19.457 83.164 19.457C82.372 19.457 81.682 19.723 81.100 20.258C80.514 20.789 80.224 21.418 80.224 22.142C80.224 22.913 80.517 23.563 81.100 24.100C81.685 24.634 82.388 24.903 83.213 24.903C83.660 24.903 84.091 24.803 84.507 24.602C84.920 24.401 85.253 24.025 85.506 23.474L83.104 23.474L83.104 21.726L87.785 21.726L87.785 22.886C87.785 23.482 87.554 24.124 87.090 24.809C86.625 25.493 86.016 25.995 85.259 26.312C84.502 26.629 83.736 26.788 82.966 26.788C81.563 26.788 80.382 26.339 79.422 25.442C78.458 24.546 77.977 23.437 77.977 22.116C77.977 20.864 78.474 19.793 79.465 18.907C80.455 18.018 81.647 17.575 83.044 17.575C84.821 17.570 86.193 18.260 87.149 19.640"/>
+            <path class="fli-logo__letter" data-letter="R" d="M95.542 19.291L95.542 21.627L96.015 21.627C97.156 21.627 97.728 21.216 97.728 20.392C97.728 20.056 97.580 19.788 97.282 19.589C96.984 19.390 96.573 19.291 96.047 19.291L95.542 19.291M93.343 17.693L96.683 17.693C97.698 17.693 98.501 17.930 99.092 18.402C99.682 18.875 99.978 19.514 99.978 20.319C99.978 20.778 99.843 21.256 99.572 21.753C99.301 22.250 98.802 22.639 98.077 22.921L100.915 26.659L98.404 26.659L95.781 23.190L95.534 23.190L95.534 26.659L93.348 26.659L93.348 17.693L93.343 17.693"/>
+            <path class="fli-logo__letter" data-letter="I" d="M106.432 17.694h2.186v8.968h-2.186Z"/>
+            <path class="fli-logo__letter" data-letter="T" d="M113.907 17.694L120.727 17.694L120.727 19.600L118.402 19.600L118.402 26.662L116.216 26.662L116.216 19.600L113.907 19.600L113.907 17.694"/>
+            <path class="fli-logo__letter" data-letter="Y" d="M125.359 17.694L127.778 17.694L129.650 20.473L131.548 17.694L133.978 17.694L130.750 22.468L130.750 26.662L128.589 26.662L128.589 22.468L125.359 17.694"/>
+          </g>
+        </svg>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <!-- D4: the menu leads to the v1 inner pages -->
+      <ul class="site-nav__list">
+        <li><a href="../../services/">Services</a></li>
+        <li><a href="../../about/">About</a></li>
+        <li><a href="../../case-studies/">Case studies</a></li>
+        <li><a href="../../tech-hub/">Tech Hub</a></li>
+      </ul>
+    </nav>
+    <a class="site-header__contact" href="#contact">Contact</a>
+  </header>
+
+  <main id="main">
+        <section class="hero" data-hero aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <ul class="hero__index mono" aria-label="About this comparison">
+          <li><span class="hero__no">01</span>Run comparison</li>
+          <li class="hero__index-span">KP 12.000 to 15.000</li>
+          <li class="hero__index-runs">Runs 2019 and 2024</li>
+          <li class="hero__index-hint" id="runs-hint">Drag the axis, or use the arrow keys (Shift for bigger steps)</li>
+        </ul>
+        <h1 class="hero__title" id="hero-title">Find the few that matter.</h1>
+        <div class="hero__aside">
+          <p class="hero__lede">Providing independent engineering consultancy and bespoke software solutions to pipeline operators globally within the energy and mining sectors.</p>
+          <p class="hero__action"><a class="button" href="#contact">Book a free consultation</a></p>
+        </div>
+
+        <div class="runs" data-runs data-state="feature" style="--x: 0.47333; --d19: 0.7101; --d24: 0.9073; --c: 5;">
+          <output class="readout" for="axis" aria-live="off">
+            <span class="readout__cell readout__cell--kp"><span class="readout__k mono">Position</span><span class="readout__v" data-r="kp">KP 13.420</span></span>
+            <span class="readout__cell readout__cell--clock"><span class="readout__k mono">Clock</span><span class="readout__v" data-r="clock">5:30</span></span>
+            <span class="readout__cell readout__cell--r19"><span class="readout__k mono"><span class="swatch swatch--2019" aria-hidden="true"></span>Run 2019</span><span class="readout__v" data-r="d2019">18% wt</span></span>
+            <span class="readout__cell readout__cell--r24"><span class="readout__k mono"><span class="swatch swatch--2024" aria-hidden="true"></span>Run 2024</span><span class="readout__v" data-r="d2024">23% wt</span></span>
+            <span class="readout__cell readout__cell--change"><span class="readout__k mono">Change</span><span class="readout__v"><span data-r="change">+5% wt</span><span class="readout__bar" aria-hidden="true"></span></span></span>
+            <span class="readout__note mono">Illustrative data</span>
+          </output>
+
+          <div class="runs__instrument">
+            <div class="runs__plot" data-plot>
+              <div class="strip strip--2019">
+                <svg class="strip__svg" viewBox="0 0 1000 100" preserveAspectRatio="none" role="img" aria-label="Run 2019"><path class="strip__path" data-run="2019" d="M0 100L6.7 100L7.8 99.9L8.9 99.6L10 99.1L11.1 98.1L12.2 96.2L13.3 93.5L14.5 89.8L15.6 85.8L16.7 82.3L17.8 80.3L18.9 80.3L20 82.4L21.1 86L22.2 90L23.4 93.6L24.5 94.9L25.6 91.3L26.7 86.8L27.8 82L28.9 78.1L30 76.1L31.1 76.7L32.3 79.7L33.4 84.2L34.5 88.9L35.6 93.1L36.7 96.1L37.8 98.1L38.9 99.1L40 99.7L41.2 99.9L42.3 100L53.4 100L54.5 99.9L55.6 99.8L56.7 99.4L57.8 98.6L59 97L60.1 94.3L61.2 90.2L62.3 84.9L63.4 79.3L64.5 74.6L65.6 72.2L66.7 72.7L67.9 76L69 81.2L70.1 86.8L71.2 91.7L72.3 95.3L73.4 93L74.5 86.8L75.6 77.7L76.8 66.3L77.9 54.4L79 44.8L80.1 40.2L81.2 42L82.3 49.7L83.4 61L84.5 72.9L85.7 83.2L86.8 90.7L87.9 95.4L89 97.9L90.1 99.2L91.2 99.7L92.3 99.9L93.4 100L109 100L110.1 99.9L111.2 99.8L112.3 99.3L113.5 98.3L114.6 96.3L115.7 92.7L116.8 87L117.9 79.3L119 70.5L120.1 62.4L121.2 57.1L122.4 56.3L123.5 60.1L124.6 67.4L125.7 76.2L126.8 84.4L127.9 90.9L129 95.2L130.1 97.8L131.3 99.1L132.4 99.7L133.5 99.8L134.6 99.4L135.7 98.6L136.8 97.1L137.9 94.5L139 90.8L140.2 86.2L141.3 81.5L142.4 77.7L143.5 76L144.6 76.9L145.7 80.1L146.8 84.7L147.9 89.5L149.1 93.5L150.2 96.4L151.3 98.2L152.4 96.3L153.5 93.1L154.6 88.2L155.7 82.2L156.8 75.8L158 70.6L159.1 68.1L160.2 69L161.3 73.1L162.4 79.1L163.5 85.4L164.6 90.9L165.7 95L166.9 97.5L168 98.9L169.1 99.6L170.2 99.8L171.3 99.9L172.4 99.9L173.5 99.8L174.6 99.5L175.8 98.8L176.9 97.4L178 94.8L179.1 90.7L180.2 85.2L181.3 78.8L182.4 72.8L183.5 68.9L184.6 68.1L185.8 70.8L186.9 76.1L188 82.4L189.1 88.1L190.2 80.4L191.3 71L192.4 61.6L193.5 54.6L194.7 52L195.8 54.6L196.9 61.5L198 70.9L199.1 80.3L200.2 88L201.3 93.5L202.4 96.9L203.6 98.6L204.7 99.5L205.8 99.8L206.9 99.9L208 100L228 100L229.1 99.9L230.3 99.8L231.4 99.5L232.5 98.8L233.6 97.4L234.7 95.2L235.8 92L236.9 88.1L238 84.2L239.2 81.2L240.3 80L241.4 81L242.5 83.8L243.6 87.6L244.7 89.8L245.8 82L246.9 71.4L248.1 59.4L249.2 48.4L250.3 41.4L251.4 40.4L252.5 45.8L253.6 55.9L254.7 67.9L255.8 79.1L257 87.8L258.1 93.6L259.2 97L260.3 98.8L261.4 99.5L262.5 99.8L263.6 100L283.6 100L284.8 99.9L285.9 99.6L287 98.9L288.1 97.4L289.2 94.5L290.3 89.7L291.4 82.8L292.5 74.3L293.7 65.6L294.8 58.9L295.9 56L297 57.9L298.1 64L299.2 72.4L300.3 81.1L301.4 88.4L302.6 93.6L303.7 96.9L304.8 98.6L305.9 99.5L307 99.8L308.1 99.9L309.2 100L317 100L318.1 99.9L319.2 99.8L320.4 99.4L321.5 98.5L322.6 96.5L323.7 92.9L324.8 86.9L325.9 78.4L327 68.2L328.1 58.1L329.3 50.7L330.4 48L331.5 51L332.6 58.7L333.7 68.8L334.8 79L335.9 87.3L337 93.1L338.2 96.7L339.3 98.6L340.4 99.4L341.5 99.8L342.6 99.9L343.7 100L345.9 100L347.1 99.9L348.2 99.6L349.3 98.8L350.4 97.1L351.5 93.6L352.6 87.7L353.7 78.7L354.8 66.9L356 54.1L357.1 43L358.2 36.7L359.3 37.1L360.4 44.1L361.5 55.6L362.6 68.4L363.7 79.9L364.8 88.5L366 85.2L367.1 77.6L368.2 69.7L369.3 63.2L370.4 60.1L371.5 61.3L372.6 66.4L373.7 73.9L374.9 81.9L376 88.7L377.1 93.7L378.2 96.9L379.3 98.6L380.4 99.4L381.5 99.8L382.6 99.9L383.8 100L384.9 100L386 99.9L387.1 99.8L388.2 99.5L389.3 98.8L390.4 97.3L391.5 94.8L392.7 90.9L393.8 85.9L394.9 80.2L396 75.3L397.1 72.4L398.2 72.4L399.3 75.3L400.4 80.2L401.6 85.8L402.7 90.9L403.8 94.8L404.9 97.3L406 96.1L407.1 92.3L408.2 86.4L409.3 78.5L410.5 69.7L411.6 61.8L412.7 56.8L413.8 56.4L414.9 60.6L416 68.2L417.1 77L418.2 85.1L419.4 91.4L420.5 95.5L421.6 92.8L422.7 89L423.8 85L424.9 81.7L426 80.1L427.1 80.6L428.3 83.1L429.4 86.8L430.5 90.8L431.6 90.4L432.7 84.3L433.8 77.2L434.9 70.3L436 65.5L437.2 64L438.3 66.5L439.4 72.1L440.5 79.2L441.6 86.1L442.7 91.7L443.8 95.6L444.9 97.9L446.1 99.1L447.2 99.7L448.3 99.9L449.4 100L460.5 100L461.6 99.8L462.7 99.5L463.8 98.7L465 96.9L466.1 93.3L467.2 86.9L468.3 77L469.4 64L470.5 49.5L471.6 36.8L472.7 29.1L473.9 28.9L475 36.2L476.1 48.8L477.2 63.2L478.3 76.4L479.4 86.4L480.5 93L481.6 96.8L482.8 96L483.9 92.7L485 88.1L486.1 82.5L487.2 77.2L488.3 73.3L489.4 72L490.5 73.8L491.7 78L492.8 83.5L493.9 89L495 93.4L496.1 96.4L497.2 98.3L498.3 99.3L499.4 99.7L500.6 99.9L501.7 100L508.3 100L509.5 99.9L510.6 99.7L511.7 99.3L512.8 98.3L513.9 96.3L515 92.8L516.1 87.6L517.2 80.9L518.4 73.7L519.5 67.6L520.6 64.3L521.7 64.8L522.8 68.9L523.9 75.4L525 82.7L526.1 89L527.3 93.8L528.4 96.9L529.5 98.6L530.6 99.4L531.7 99.8L532.8 99.9L533.9 100L539.5 100L540.6 99.9L541.7 99.8L542.8 99.3L543.9 98.3L545.1 96.2L546.2 92.3L547.3 85.9L548.4 77.2L549.5 66.9L550.6 57L551.7 50L552.8 48.1L553.9 51.7L555.1 59.8L556.2 70.1L557.3 80.1L558.4 88.1L559.5 93.7L560.6 97L561.7 98.7L562.8 99.5L564 99.8L565.1 99.9L566.2 100L617.4 100L618.5 99.9L619.6 99.6L620.7 99.1L621.8 98.1L622.9 96.2L624 93.4L625.1 89.8L626.3 85.8L627.4 82.3L628.5 80.2L629.6 80.3L630.7 82.4L631.8 86L632.9 90L634 91.3L635.2 84.5L636.3 75.3L637.4 64.9L638.5 55.4L639.6 49.2L640.7 48.3L641.8 52.9L642.9 61.7L644 72.1L645.2 81.8L646.3 89.4L647.4 94.5L648.5 97.4L649.6 98.9L650.7 99.6L651.8 99.9L652.9 100L664.1 100L665.2 99.9L666.3 99.8L667.4 99.4L668.5 98.5L669.6 96.5L670.7 92.6L671.9 86L673 76.3L674.1 64.1L675.2 51.4L676.3 41.1L677.4 36.2L678.5 38.1L679.6 46.3L680.8 58.4L681.9 71.1L683 82L684.1 90L685.2 95L686.3 97.8L687.4 99.1L688.5 99.7L689.7 99.8L690.8 99.4L691.9 98.4L693 96.3L694.1 92.5L695.2 86.3L696.3 77.7L697.4 67.4L698.6 57.5L699.7 50.3L700.8 48L701.9 51.4L703 59.3L704.1 69.6L705.2 79.6L706.3 87.8L707.5 90.7L708.6 83.1L709.7 72.4L710.8 59.7L711.9 47.5L713 38.7L714.1 36L715.2 40.3L716.4 50.1L717.5 62.7L718.6 75.1L719.7 85.1L720.8 92L721.9 96.2L723 98.4L724.1 98.2L725.3 96L726.4 92L727.5 85.7L728.6 77.3L729.7 67.7L730.8 58.9L731.9 53.2L733 52.3L734.1 56.5L735.3 64.5L736.4 74.1L737.5 83.1L738.6 90.1L739.7 94.9L740.8 97.6L741.9 99L743 99.6L744.2 99.9L745.3 100L747.5 100L748.6 99.9L749.7 99.8L750.8 99.4L751.9 98.6L753.1 96.7L754.2 93.4L755.3 88.1L756.4 80.6L757.5 71.9L758.6 63.6L759.7 57.7L760.8 56.1L762 59.2L763.1 66.1L764.2 74.8L765.3 83.2L766.4 90L767.5 93.9L768.6 90.4L769.7 86.4L770.9 82.7L772 80.4L773.1 80.2L774.2 82L775.3 85.4L776.4 89.4L777.5 93.1L778.6 96L779.8 96.9L780.9 93.5L782 87.9L783.1 79.7L784.2 69.7L785.3 59.4L786.4 51.5L787.5 48L788.7 50.2L789.8 57.4L790.9 67.3L792 77.6L793.1 86.2L794.2 92.5L795.3 88.7L796.4 81.2L797.6 71.9L798.7 62.4L799.8 55.1L800.9 52L802 54.1L803.1 60.7L804.2 70L805.3 79.4L806.5 87.4L807.6 93.1L808.7 96.6L809.8 98.5L810.9 99.4L812 99.8L813.1 99.8L814.2 99.5L815.4 98.9L816.5 97.6L817.6 95.5L818.7 92.4L819.8 88.6L820.9 84.6L822 81.5L823.1 80L824.2 80.7L825.4 83.4L826.5 87.2L827.6 91.1L828.7 94.5L829.8 97L830.9 98.5L832 99.3L833.1 99.7L834.3 99.9L835.4 100L836.5 100L837.6 99.9L838.7 99.8L839.8 99.5L840.9 98.8L842 97.4L843.2 95L844.3 91.2L845.4 86.1L846.5 80.5L847.6 75.5L848.7 72.5L849.8 72.3L850.9 75.1L852.1 80L853.2 85.6L854.3 90.7L855.4 94.6L856.5 97.2L857.6 98.7L858.7 99.5L859.8 99.8L861 99.9L862.1 100L866.5 100L867.6 99.9L868.7 99.6L869.9 99L871 97.6L872.1 94.9L873.2 90.4L874.3 83.7L875.4 75.3L876.5 66.6L877.6 59.5L878.8 56.1L879.9 57.5L881 63.1L882.1 71.4L883.2 80.1L884.3 87.7L885.4 93.1L886.5 96.6L887.7 98.5L888.8 99.4L889.9 99.8L891 99.9L892.1 100L903.2 100L904.3 99.9L905.5 99.6L906.6 98.9L907.7 97.5L908.8 94.8L909.9 90.1L911 83.4L912.1 75L913.2 66.3L914.3 59.3L915.5 56.1L916.6 57.6L917.7 63.4L918.8 71.7L919.9 80.4L921 87.9L922.1 93.3L923.2 96.7L924.4 98.5L925.5 99.4L926.6 99.8L927.7 99.9L928.8 100L941 100L942.2 99.9L943.3 99.8L944.4 99.3L945.5 98.2L946.6 95.9L947.7 91.6L948.8 84.6L949.9 74.8L951.1 63L952.2 51.4L953.3 42.9L954.4 40L955.5 43.6L956.6 52.6L957.7 64.3L958.8 76L960 85.5L961.1 92.2L962.2 96.2L963.3 96.2L964.4 92.5L965.5 86.7L966.6 78.9L967.7 70.1L968.9 62L970 57L971.1 56.3L972.2 60.4L973.3 67.8L974.4 76.6L975.5 84.8L976.6 91.2L977.8 95.4L978.9 97.9L980 96.9L981.1 93.7L982.2 88.5L983.3 81.2L984.4 72.6L985.5 64.1L986.7 58L987.8 56L988.9 58.8L990 65.5L991.1 74.1L992.2 82.6L993.3 89.6L994.4 94.4L995.6 97.3L996.7 98.8L997.8 99.6L998.9 99.8L1000 100"/></svg>
+                <p class="strip__label mono" aria-hidden="true"><span class="swatch swatch--2019"></span>Run 2019</p>
+                <p class="strip__scale mono" aria-hidden="true"><span>20% wt</span><span>10</span></p>
+              </div>
+              <div class="strip strip--2024">
+                <svg class="strip__svg" viewBox="0 0 1000 100" preserveAspectRatio="none" role="img" aria-label="Run 2024"><path class="strip__path" data-run="2024" d="M0 100L5.6 100L6.7 99.9L7.8 99.8L8.9 99.5L10 98.8L11.1 97.3L12.2 94.7L13.3 90.8L14.5 85.7L15.6 80.1L16.7 75.2L17.8 72.4L18.9 72.4L20 75.4L21.1 80.3L22.2 85.9L23.4 91L24.5 92.3L25.6 87L26.7 80.1L27.8 73L28.9 67.1L30 64.1L31.1 65.1L32.3 69.5L33.4 76.2L34.5 83.4L35.6 89.6L36.7 94.2L37.8 97.1L38.9 98.7L40 99.5L41.2 99.8L42.3 99.9L43.4 100L53.4 100L54.5 99.9L55.6 99.7L56.7 99.3L57.8 98.4L59 96.6L60.1 93.4L61.2 88.8L62.3 82.8L63.4 76.4L64.5 71L65.6 68.2L66.7 68.8L67.9 72.6L69 78.5L70.1 84.9L71.2 90.5L72.3 94.6L73.4 92.1L74.5 85.1L75.6 74.8L76.8 61.8L77.9 48.3L79 37.4L80.1 32.2L81.2 34.3L82.3 43L83.4 55.8L84.5 69.3L85.7 80.9L86.8 89.4L87.9 94.7L89 97.7L90.1 99.1L91.2 99.7L92.3 99.9L93.4 100L109 100L110.1 99.9L111.2 99.7L112.3 99.2L113.5 97.9L114.6 95.3L115.7 90.7L116.8 83.4L117.9 73.6L119 62.4L120.1 52.1L121.2 45.4L122.4 44.3L123.5 49.2L124.6 58.5L125.7 69.7L126.8 80.2L127.9 88.4L129 94L130.1 97.2L131.3 98.8L132.4 99.6L133.5 99.7L134.6 99.3L135.7 98.4L136.8 96.6L137.9 93.6L139 89.3L140.2 83.9L141.3 78.4L142.4 74L143.5 72L144.6 73.1L145.7 76.8L146.8 82.2L147.9 87.7L149.1 92.4L150.2 95.8L151.3 97.6L152.4 95L153.5 90.5L154.6 83.8L155.7 75.5L156.8 66.7L158 59.6L159.1 56.1L160.2 57.4L161.3 63L162.4 71.2L163.5 80L164.6 87.5L165.7 93.1L166.9 96.5L168 98.5L169.1 99.4L170.2 99.8L171.3 99.9L172.4 99.9L173.5 99.8L174.6 99.5L175.8 98.7L176.9 97.1L178 94.2L179.1 89.6L180.2 83.3L181.3 76.1L182.4 69.4L183.5 65L184.6 64.2L185.8 67.2L186.9 73.1L188 80.3L189.1 87L190.2 80.4L191.3 71L192.4 61.6L193.5 54.6L194.7 52L195.8 54.6L196.9 61.5L198 70.9L199.1 80.3L200.2 88L201.3 93.5L202.4 96.9L203.6 98.6L204.7 99.5L205.8 99.8L206.9 99.9L208 100L228 100L229.1 99.9L230.3 99.7L231.4 99.1L232.5 98L233.6 95.9L234.7 92.3L235.8 87.2L236.9 81L238 74.7L239.2 69.9L240.3 68L241.4 69.5L242.5 74.1L243.6 80.2L244.7 86.5L245.8 82L246.9 71.4L248.1 59.4L249.2 48.4L250.3 41.4L251.4 40.4L252.5 45.8L253.6 55.9L254.7 67.9L255.8 79.1L257 87.8L258.1 93.6L259.2 97L260.3 98.8L261.4 99.5L262.5 99.8L263.6 100L282.5 100L283.6 99.9L284.8 99.8L285.9 99.4L287 98.6L288.1 96.6L289.2 93L290.3 86.9L291.4 78.1L292.5 67.3L293.7 56.2L294.8 47.7L295.9 44L297 46.4L298.1 54.2L299.2 64.9L300.3 75.9L301.4 85.3L302.6 91.9L303.7 96L304.8 98.3L305.9 99.3L307 99.8L308.1 99.9L309.2 100L317 100L318.1 99.9L319.2 99.7L320.4 99.3L321.5 98.1L322.6 95.7L323.7 91.2L324.8 83.8L325.9 73.4L327 60.8L328.1 48.4L329.3 39.3L330.4 36L331.5 39.7L332.6 49.1L333.7 61.6L334.8 74.1L335.9 84.4L337 91.6L338.2 95.9L339.3 98.2L340.4 99.3L341.5 99.8L342.6 99.9L343.7 100L345.9 100L347.1 99.8L348.2 99.5L349.3 98.7L350.4 96.9L351.5 93.3L352.6 86.9L353.7 77.3L354.8 64.8L356 51.2L357.1 39.4L358.2 32.7L359.3 33.2L360.4 40.6L361.5 52.8L362.6 66.4L363.7 78.6L364.8 87.8L366 80.8L367.1 70.9L368.2 60.6L369.3 52.2L370.4 48.2L371.5 49.7L372.6 56.3L373.7 66.1L374.9 76.4L376 85.4L377.1 91.9L378.2 95.9L379.3 98.2L380.4 99.3L381.5 99.7L382.6 99.9L383.8 100L384.9 100L386 99.9L387.1 99.7L388.2 99.3L389.3 98.3L390.4 96.2L391.5 92.6L392.7 87.1L393.8 79.8L394.9 71.8L396 64.7L397.1 60.6L398.2 60.5L399.3 64.7L400.4 71.7L401.6 79.8L402.7 87L403.8 92.6L404.9 96.2L406 95.4L407.1 90.9L408.2 83.9L409.3 74.6L410.5 64.2L411.6 54.8L412.7 49L413.8 48.5L414.9 53.5L416 62.4L417.1 72.8L418.2 82.4L419.4 89.8L420.5 93.2L421.6 88.4L422.7 82.4L423.8 76L424.9 70.8L426 68.1L427.1 68.9L428.3 72.9L429.4 78.8L430.5 85.2L431.6 89.3L432.7 82.6L433.8 74.7L434.9 67L436 61.6L437.2 60L438.3 62.8L439.4 69L440.5 76.9L441.6 84.6L442.7 90.8L443.8 95.1L444.9 97.7L446.1 99L447.2 99.6L448.3 99.9L449.4 100L459.4 100L460.5 99.9L461.6 99.8L462.7 99.4L463.8 98.4L465 96.1L466.1 91.4L467.2 83.2L468.3 70.6L469.4 54L470.5 35.5L471.6 19.2L472.7 9.4L473.9 9.1L475 18.5L476.1 34.6L477.2 53L478.3 69.8L479.4 82.6L480.5 91.1L481.6 95.9L482.8 94.3L483.9 89.6L485 82.9L486.1 75L487.2 67.4L488.3 61.8L489.4 60L490.5 62.6L491.7 68.6L492.8 76.5L493.9 84.2L495 90.5L496.1 94.9L497.2 97.6L498.3 99L499.4 99.6L500.6 99.9L501.7 100L508.3 100L509.5 99.9L510.6 99.7L511.7 99.3L512.8 98.3L513.9 96.3L515 92.8L516.1 87.6L517.2 80.9L518.4 73.7L519.5 67.6L520.6 64.3L521.7 64.8L522.8 68.9L523.9 75.4L525 82.7L526.1 89L527.3 93.8L528.4 96.9L529.5 98.6L530.6 99.4L531.7 99.8L532.8 99.9L533.9 100L539.5 100L540.6 99.9L541.7 99.8L542.8 99.3L543.9 98.3L545.1 96.2L546.2 92.3L547.3 85.9L548.4 77.2L549.5 66.9L550.6 57L551.7 50L552.8 48.1L553.9 51.7L555.1 59.8L556.2 70.1L557.3 80.1L558.4 88.1L559.5 93.7L560.6 97L561.7 98.7L562.8 99.5L564 99.8L565.1 99.9L566.2 100L616.2 100L617.4 99.9L618.5 99.8L619.6 99.5L620.7 98.7L621.8 97.3L622.9 94.7L624 90.8L625.1 85.7L626.3 80.1L627.4 75.2L628.5 72.3L629.6 72.4L630.7 75.4L631.8 80.4L632.9 86L634 90.6L635.2 83.3L636.3 73.4L637.4 62.2L638.5 52L639.6 45.3L640.7 44.4L641.8 49.3L642.9 58.7L644 69.9L645.2 80.4L646.3 88.6L647.4 94L648.5 97.2L649.6 98.8L650.7 99.6L651.8 99.9L652.9 100L664.1 100L665.2 99.9L666.3 99.8L667.4 99.3L668.5 98.2L669.6 95.8L670.7 91.2L671.9 83.4L673 71.8L674.1 57.4L675.2 42.3L676.3 30.1L677.4 24.2L678.5 26.5L679.6 36.3L680.8 50.5L681.9 65.7L683 78.7L684.1 88.2L685.2 94.1L686.3 97.4L687.4 99L688.5 99.6L689.7 99.8L690.8 99.3L691.9 98.3L693 96L694.1 91.9L695.2 85.3L696.3 76L697.4 64.9L698.6 54.2L699.7 46.5L700.8 44L701.9 47.7L703 56.2L704.1 67.2L705.2 78L706.3 86.8L707.5 89L708.6 79.9L709.7 67.2L710.8 52.2L711.9 37.7L713 27.3L714.1 24.1L715.2 29.1L716.4 40.7L717.5 55.7L718.6 70.4L719.7 82.3L720.8 90.5L721.9 95.5L723 98.1L724.1 97.9L725.3 95.3L726.4 90.6L727.5 83.3L728.6 73.5L729.7 62.3L730.8 52L731.9 45.4L733 44.3L734.1 49.3L735.3 58.6L736.4 69.8L737.5 80.3L738.6 88.5L739.7 94L740.8 97.2L741.9 98.8L743 99.6L744.2 99.9L745.3 100L747.5 100L748.6 99.9L749.7 99.8L750.8 99.4L751.9 98.4L753.1 96.5L754.2 92.8L755.3 87L756.4 78.9L757.5 69.4L758.6 60.2L759.7 53.8L760.8 52.1L762 55.5L763.1 63L764.2 72.5L765.3 81.7L766.4 89.1L767.5 90.3L768.6 84.6L769.7 78.2L770.9 72.4L772 68.7L773.1 68.2L774.2 71.2L775.3 76.6L776.4 83L777.5 89L778.6 93.6L779.8 96.4L780.9 92.5L782 86L783.1 76.6L784.2 65L785.3 53.2L786.4 44L787.5 40L788.7 42.6L789.8 50.8L790.9 62.3L792 74.1L793.1 84.1L794.2 91.3L795.3 88.7L796.4 81.2L797.6 71.9L798.7 62.4L799.8 55.1L800.9 52L802 54.1L803.1 60.7L804.2 70L805.3 79.4L806.5 87.4L807.6 93.1L808.7 96.6L809.8 98.5L810.9 99.4L812 99.8L813.1 99.8L814.2 99.4L815.4 98.6L816.5 97.1L817.6 94.6L818.7 90.9L819.8 86.3L820.9 81.6L822 77.8L823.1 76L824.2 76.9L825.4 80.1L826.5 84.6L827.6 89.4L828.7 93.4L829.8 96.4L830.9 98.2L832 99.2L833.1 99.7L834.3 99.9L835.4 100L836.5 100L837.6 99.9L838.7 99.8L839.8 99.5L840.9 98.7L842 97.1L843.2 94.2L844.3 89.9L845.4 84.1L846.5 77.7L847.6 72L848.7 68.5L849.8 68.4L850.9 71.5L852.1 77.1L853.2 83.5L854.3 89.4L855.4 93.9L856.5 96.8L857.6 98.5L858.7 99.4L859.8 99.8L861 99.9L862.1 100L865.4 100L866.5 99.9L867.6 99.8L868.7 99.5L869.9 98.7L871 96.9L872.1 93.5L873.2 87.7L874.3 79.2L875.4 68.6L876.5 57.4L877.6 48.5L878.8 44.2L879.9 45.9L881 53L882.1 63.6L883.2 74.7L884.3 84.3L885.4 91.3L886.5 95.7L887.7 98.1L888.8 99.2L889.9 99.7L891 99.9L892.1 100L903.2 100L904.3 99.8L905.5 99.5L906.6 98.8L907.7 97.1L908.8 93.8L909.9 88.4L911 80.4L912.1 70.4L913.2 60.1L914.3 51.9L915.5 48.1L916.6 49.9L917.7 56.7L918.8 66.6L919.9 76.9L921 85.7L922.1 92.1L923.2 96.1L924.4 98.3L925.5 99.3L926.6 99.8L927.7 99.9L928.8 100L941 100L942.2 99.9L943.3 99.7L944.4 99.2L945.5 97.9L946.6 95.1L947.7 89.9L948.8 81.6L949.9 69.7L951.1 55.6L952.2 41.7L953.3 31.5L954.4 28L955.5 32.3L956.6 43.1L957.7 57.2L958.8 71.2L960 82.6L961.1 90.6L962.2 95.5L963.3 95.8L964.4 91.8L965.5 85.4L966.6 76.9L967.7 67.3L968.9 58.6L970 53L971.1 52.4L972.2 56.8L973.3 64.9L974.4 74.5L975.5 83.4L976.6 90.4L977.8 95L978.9 97.7L980 96.9L981.1 93.7L982.2 88.5L983.3 81.2L984.4 72.6L985.5 64.1L986.7 58L987.8 56L988.9 58.8L990 65.5L991.1 74.1L992.2 82.6L993.3 89.6L994.4 94.4L995.6 97.3L996.7 98.8L997.8 99.6L998.9 99.8L1000 100"/></svg>
+                <p class="strip__label mono" aria-hidden="true"><span class="swatch swatch--2024"></span>Run 2024</p>
+                <p class="strip__scale mono" aria-hidden="true"><span>20% wt</span><span>10</span></p>
+              </div>
+              <span class="axis-line ax" aria-hidden="true"></span>
+              <span class="axis-dot axis-dot--2019 ax" aria-hidden="true"></span>
+              <span class="axis-dot axis-dot--2024 ax" aria-hidden="true"></span>
+              <span class="ghost-line" aria-hidden="true"></span>
+            </div>
+            <div class="runs__scale mono" aria-hidden="true">
+              <span style="--t: 0">KP 12.0</span><span style="--t: 0.1667">12.5</span><span style="--t: 0.3333">13.0</span><span style="--t: 0.5">13.5</span><span style="--t: 0.6667">14.0</span><span style="--t: 0.8333">14.5</span><span style="--t: 1">15.0</span>
+              <span class="axis__tag ax"><span data-r="tag">KP 13.420</span></span>
+            </div>
+            <div class="axis ax" id="axis" role="slider" tabindex="0" aria-label="Position along the line"
+                 aria-valuemin="12" aria-valuemax="15" aria-valuenow="13.42"
+                 aria-valuetext="KP 13.420, 5:30, 18% wt in 2019, 23% wt in 2024" aria-describedby="runs-hint">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02: figures as "show, don't tell" blocks. Figures confirmed by Lewis (30 September 2026);
+         heading and labels as v1 and v2 (approved). -->
+    <section class="sec sampler-figures" id="work" aria-labelledby="figures-title">
+      <div class="container">
+        <div class="sec__head">
+          <p class="sec__no mono" aria-hidden="true">02</p>
+          <p class="sec__label mono">Work to date</p>
+          <h2 class="sec__title" id="figures-title">Since April 2020</h2>
+        </div>
+        <dl class="figs">
+          <div class="fig"><dt class="fig__label">Pipelines</dt><dd class="fig__value" data-figure="pipelines">642</dd></div>
+          <div class="fig"><dt class="fig__label">Kilometres of pipeline</dt><dd class="fig__value" data-figure="km">21,942</dd></div>
+          <div class="fig"><dt class="fig__label">Projects completed</dt><dd class="fig__value" data-figure="projects">175</dd></div>
+          <div class="fig"><dt class="fig__label">Companies</dt><dd class="fig__value" data-figure="companies">24</dd></div>
+        </dl>
+      </div>
+    </section>
+
+        <section class="sec" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="sec__head">
+          <p class="sec__no mono" aria-hidden="true">03</p>
+          <p class="sec__label mono">Consultancy</p>
+          <h2 class="sec__title" id="services-title">All credible threats</h2>
+          <p class="sec__lede">We support operators with best practice integrity management consultancy covering all credible pipeline threats. From detailed fracture mechanics to auditing an entire PIMS, our support is industry leading.</p>
+        </div>
+        <ol class="sampler-services index">
+          <li data-service="crack-management"><a class="row" href="../../services/crack-management/"><span class="row__no mono">01</span><span class="row__title">Crack management</span><span class="row__more"><span class="row__text">We’ll help you understand the threats to your assets and support you to build a practical pipeline integrity management plan.</span></span><span class="row__go" aria-hidden="true"></span></a></li>
+          <li data-service="ili-advisory"><a class="row" href="../../services/ili-advisory/"><span class="row__no mono">02</span><span class="row__title">ILI advisory</span><span class="row__more"><span class="row__text">How to maximise the value of your crack-detection ILI campaign</span></span><span class="row__go" aria-hidden="true"></span></a></li>
+          <li data-service="pims"><a class="row" href="../../services/pims/"><span class="row__no mono">03</span><span class="row__title">PIMS</span><span class="row__more"><span class="row__text">Pipeline Integrity Management Systems (PIMS) are implemented to proactively ensure that the safe, environmentally responsible, and reliable service of the pipeline system is maintained throughout its lifecycle.</span></span><span class="row__go" aria-hidden="true"></span></a></li>
+          <li data-service="additional-engineering"><a class="row" href="../../services/additional-engineering/"><span class="row__no mono">04</span><span class="row__title">Additional engineering</span><span class="row__more"><span class="row__text">Alongside our specialist pipeline integrity department, our engineering team offer expert support across industries such as oil and gas, renewables, water and mining.</span></span><span class="row__go" aria-hidden="true"></span></a></li>
+          <li data-service="software"><a class="row" href="../../services/software/"><span class="row__no mono">05</span><span class="row__title">Software</span><span class="row__more"><span class="row__text">The Frontline Integrity team have developed a series of bespoke engineering tools to support pipeline operators.</span></span><span class="row__go" aria-hidden="true"></span></a></li>
+        </ol>
+      </div>
+    </section>
+
+        <section class="sec" id="cases" aria-labelledby="cases-title">
+      <div class="container">
+        <div class="sec__head">
+          <p class="sec__no mono" aria-hidden="true">04</p>
+          <p class="sec__label mono">Selected work</p>
+          <h2 class="sec__title" id="cases-title">Case studies</h2>
+        </div>
+        <div class="table">
+          <p class="table__head mono" aria-hidden="true"><span>Title</span><span>Region</span><span>Service</span></p>
+          <ul class="sampler-cases table__list">
+            <li data-case="ili-campaign-support"><a class="trow" href="../../case-studies/ili-campaign-support/"><span class="trow__title">ILI campaign support</span><span class="trow__region"><span class="visually-hidden">Region: </span>South America</span><span class="trow__service mono"><span class="visually-hidden">Service: </span>ILI services</span><span class="trow__go" aria-hidden="true"></span></a></li>
+            <li data-case="crack-fatigue-study-2"><a class="trow" href="../../case-studies/crack-fatigue-study-2/"><span class="trow__title">Crack fatigue study</span><span class="trow__region"><span class="visually-hidden">Region: </span>UK</span><span class="trow__service mono"><span class="visually-hidden">Service: </span>Pipeline integrity, ILI services</span><span class="trow__go" aria-hidden="true"></span></a></li>
+            <li data-case="which-metal-loss-ili-tool-should-i-run"><a class="trow" href="../../case-studies/which-metal-loss-ili-tool-should-i-run/"><span class="trow__title">Which metal loss ILI tool should I run?</span><span class="trow__region"><span class="visually-hidden">Region: </span>South America</span><span class="trow__service mono"><span class="visually-hidden">Service: </span>ILI services</span><span class="trow__go" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+        <p class="table__all"><a class="link-arrow mono" href="../../case-studies/">All case studies</a></p>
+      </div>
+    </section>
+
+        <section class="sec close" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="sec__head sec__head--bare">
+          <p class="sec__no mono" aria-hidden="true">05</p>
+          <p class="sec__label mono">Contact</p>
+        </div>
+        <div class="close__grid">
+          <div class="close__lead">
+            <h2 class="close__title" id="contact-title">Let’s talk</h2>
+            <p class="close__lede">Whether it’s remote support or in your office, we’re here to support you with pipeline integrity management.</p>
+            <p class="close__actions">
+              <a class="sampler-cta" href="mailto:enquiries@frontlineintegrity.co.uk?subject=Consultation%20request">Book a free consultation</a>
+              <a class="button button--ghost" href="tel:+441918161574">+44 (0)191 816 1574</a>
+            </p>
+          </div>
+          <dl class="close__block">
+            <div><dt class="mono">Email</dt><dd><a href="mailto:enquiries@frontlineintegrity.co.uk">enquiries@frontlineintegrity.co.uk</a></dd></div>
+            <div><dt class="mono">Telephone</dt><dd><a href="tel:+441918161574">+44 (0)191 816 1574</a></dd></div>
+            <div><dt class="mono">Office</dt><dd>3 Kingfisher Way, Silverlink Business Park, Newcastle upon Tyne, NE28 9NX</dd></div>
+            <div><dt class="mono">Replies</dt><dd>Within 48 hours</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <nav class="site-footer__nav" aria-label="Footer">
+        <ul>
+          <li><a href="../../services/">Services</a></li>
+          <li><a href="../../about/">About</a></li>
+          <li><a href="../../case-studies/">Case studies</a></li>
+          <li><a href="../../tech-hub/">Tech Hub</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__legal mono">Frontline Integrity Ltd. Company number 12549777.</p>
+    </div>
+  </footer>
+  <script type="module" src="../../shared/version-switcher.js"></script>  <!-- review tool: remove before launch -->
+</body>
+</html>

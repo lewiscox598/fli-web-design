@@ -60,7 +60,7 @@ function start() {
   if (posterMode) hero.classList.add("hero--poster");
   const lite = window.matchMedia("(max-width: 639.98px)").matches;
   const scene = new PipeHero(canvas, {
-    mode: FLI.heroPipe.mode, colours: colours(), lite,
+    colours: colours(), lite,
     logo: posterMode && params.get("nologo") === "1" ? [] : logoPaths(),
   });
   const info = hero.querySelector(".hero-info");

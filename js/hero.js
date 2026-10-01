@@ -9,9 +9,7 @@
   var scriptUrl = document.currentScript && document.currentScript.src;
 
   hero.classList.add("hero--animated");
-  var mode = params.get("hero") === "inspect" ? "inspect" : "bore";
-  hero.setAttribute("data-hero-mode", mode);
-  FLI.heroPipe = { mode: mode, progress: 0, listeners: [] };
+  FLI.heroPipe = { progress: 0, listeners: [] };
 
   FLI.trackProgress(hero, function (p) {
     var copy = FLI.clamp((p - 0.78) / 0.17, 0, 1);

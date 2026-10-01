@@ -7,9 +7,8 @@ import { pipeToWorld, wrapArc } from "./pipespace.js";
 import { grid, annulus, weldBead, rectOutline, segment } from "./builders.js";
 import { PipeObject } from "./remap.js";
 import { PIPE, R, C, WELDS, FEATURES, LOGO, LOGO_COMPACT, DEPTH_EXAGGERATION, box, highlight, pocketPatch } from "./features.js";
-import { bore, inspect, FOV } from "./timelines.js";
+import { bore, FOV } from "./timelines.js";
 
-const TIMELINES = { bore, inspect };
 const WT = PIPE.wt;
 const LOGO_W = 133.978;
 const LOGO_H = 26.788;
@@ -35,9 +34,8 @@ function linear(hex) {
 }
 
 export class PipeHero {
-  constructor(canvas, { mode = "bore", colours, logo = [], lite = false }) {
+  constructor(canvas, { colours, logo = [], lite = false }) {
     this.canvas = canvas;
-    this.mode = TIMELINES[mode] ? mode : "bore";
     this.colours = colours;
     this.lite = lite;
     this.nA = lite ? 96 : 192;
@@ -75,7 +73,6 @@ export class PipeHero {
     this._buildPipe();
     this._buildLogo(logo);
     this._buildFeatures();
-    this._buildInspect();
     this._remap(0);
   }
 
@@ -183,7 +180,7 @@ export class PipeHero {
   }
 
   // 2019 outlines on the surfaces (colour per surface, spec section 4), and the highlighted pair's
-  // glow, rim and link line in the bore. Task 7 adds the inspect data boxes.
+  // glow, rim and link line in the bore.
   _buildFeatures() {
     const c = this.colours;
     this.surfaceOutlines = new THREE.Group();
@@ -251,10 +248,6 @@ export class PipeHero {
     for (const o of this.objects) o.remap({ u, k: 1, gap: 0 });
   }
 
-  setMode(mode) {
-    if (TIMELINES[mode]) this.mode = mode;
-  }
-
   resize() {
     const w = this.canvas.clientWidth;
     const h = this.canvas.clientHeight;
@@ -265,93 +258,24 @@ export class PipeHero {
   }
 
   setProgress(p) {
-    const pose = TIMELINES[this.mode](p, this.camera.aspect, this.lite);
+    const pose = bore(p, this.camera.aspect, this.lite);
     if (Math.abs(pose.u - this.u) > 1e-4) this._remap(pose.u);
     this.camera.position.set(...pose.cam);
     this.camera.lookAt(...pose.look);
     for (const m of this.wallMaterials) m.opacity = pose.wall;
-    const surf = pose.wall * (1 - pose.boxes);
+    const surf = pose.wall;
     for (const m of this.outlineMaterials) m.opacity = surf;
     for (const m of this.highlightMaterials) m.opacity = pose.highlight * surf;
-    this._applyExtras(pose);
     this.renderer.render(this.scene, this.camera);
     this.pose = pose;
     return pose;
-  }
-
-  // Inspect version: the ILI tool, its scan ring on the coating, and the flat data boxes that sit
-  // just above the coating so they read on the unrolled strip (spec sections 4 and 5).
-  _buildInspect() {
-    const c = this.colours;
-    this.tool = new THREE.Group();
-    const toolMat = new THREE.MeshStandardMaterial({ color: 0x2a3440, roughness: 0.5, metalness: 0.6 });
-    const body = new THREE.Mesh(new THREE.CylinderGeometry(R - WT - 60, R - WT - 60, 900, 48), toolMat);
-    body.rotation.z = Math.PI / 2;
-    this.tool.add(body);
-    for (const x of [-420, 420]) {
-      const cup = new THREE.Mesh(new THREE.CylinderGeometry(R - WT - 2, R - WT - 2, 30, 64), toolMat);
-      cup.rotation.z = Math.PI / 2;
-      cup.position.x = x;
-      this.tool.add(cup);
-    }
-    const sensor = new THREE.Mesh(
-      new THREE.TorusGeometry(R - WT - 20, 12, 12, 96),
-      new THREE.MeshBasicMaterial({ color: linear(c.teal), toneMapped: false }),
-    );
-    sensor.rotation.y = Math.PI / 2;
-    this.tool.add(sensor);
-    this.tool.visible = false;
-    this.scene.add(this.tool);
-
-    this.scanRing = new THREE.Mesh(
-      new THREE.TorusGeometry(R + 6, 5, 8, 160),
-      new THREE.MeshBasicMaterial({ color: linear(c.teal), toneMapped: false, transparent: true, opacity: 0.9 }),
-    );
-    this.scanRing.rotation.y = Math.PI / 2;
-    this.scanRing.visible = false;
-    this.scene.add(this.scanRing);
-
-    this.dataBoxes = new THREE.Group();
-    this.scene.add(this.dataBoxes);
-    const fill = new THREE.MeshBasicMaterial({ color: linear(c.teal), transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide });
-    const outline = new THREE.LineBasicMaterial({ color: linear(c.muted), transparent: true, opacity: 0 });
-    const hot = new THREE.MeshBasicMaterial({ color: linear(c.orange), transparent: true, opacity: 0, depthWrite: false, toneMapped: false, side: THREE.DoubleSide });
-    const hotRim = new THREE.MeshBasicMaterial({ color: linear(c.white), transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide });
-    const link = new THREE.LineBasicMaterial({ color: linear(c.white), transparent: true, opacity: 0 });
-    const flat = (b, r) => grid({ s0: b.x1, s1: b.x2, nS: 1, a0: b.ya, a1: b.yb, nA: Math.max(2, Math.ceil((b.yb - b.ya) / 20)), rcAt: () => [r, 0, 0] });
-    for (const f of FEATURES) {
-      const b24 = box(f, 2024);
-      this._add(this._mesh(flat(b24, 2), f.highlight ? hot : fill), this.dataBoxes);
-      if (f.d2019 !== null) this._add(this._line(rectOutline({ ...box(f, 2019), rc: [2.3, 0, 0], step: 6 }), outline), this.dataBoxes);
-    }
-    const hb = box(highlight, 2024);
-    for (const part of this._ribbon(hb, 8, 2.4)) this._add(this._mesh(part, hotRim), this.dataBoxes);
-    const h19 = box(highlight, 2019);
-    this._add(this._line(segment([(h19.x1 + h19.x2) / 2, (h19.ya + h19.yb) / 2, 2.5, 0, 0], [(hb.x1 + hb.x2) / 2, (hb.ya + hb.yb) / 2, 2.5, 0, 0]), link), this.dataBoxes);
-    this.dataBoxes.traverse((o) => { o.renderOrder = 3; });
-    this.boxMaterials = { fill, outline, hot, hotRim, link };
-  }
-
-  _applyExtras(pose) {
-    const onPipe = pose.u < 0.01;
-    this.tool.visible = pose.tool !== null && onPipe;
-    if (this.tool.visible) this.tool.position.set(pose.tool, 0, 0);
-    this.scanRing.visible = pose.scan !== null && onPipe;
-    if (this.scanRing.visible) this.scanRing.position.set(pose.scan, 0, 0);
-    const m = this.boxMaterials;
-    this.dataBoxes.visible = pose.boxes > 0;
-    m.fill.opacity = 0.85 * pose.boxes;
-    m.outline.opacity = pose.boxes;
-    m.hot.opacity = pose.boxes * 0.85 * pose.highlight;
-    m.hotRim.opacity = pose.boxes * pose.highlight;
-    m.link.opacity = pose.boxes * pose.highlight;
   }
 
   // The highlighted pair on screen, in CSS px within the canvas: its centre, whether that centre is
   // in view, and the bounding box of both runs' footprints, so a label can sit beside it, not on it.
   anchor() {
     const h = highlight;
-    const r = this.u > 0 ? 2.1 : -WT;
+    const r = -WT;
     const cw = this.canvas.clientWidth;
     const ch = this.canvas.clientHeight;
     const v = new THREE.Vector3();

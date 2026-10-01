@@ -6,8 +6,10 @@
 
 const VERSIONS = [
   { label: "v1 Pipe (bore)", path: "/", params: {} },
-  { label: "v1 Pipe (inspect)", path: "/", params: { hero: "inspect" } },
   { label: "v2 Signal", path: "/v2/", params: {} },
+  { label: "v3 A Drawing office", path: "/v3/a/", params: {} },
+  { label: "v3 B Run A/B", path: "/v3/b/", params: {} },
+  { label: "v3 C Steel", path: "/v3/c/", params: {} },
 ];
 const CARRY = ["footprint"];   // review params kept when switching
 
@@ -23,15 +25,15 @@ export const rel = (pathname, base = BASE) => (pathname.startsWith(base) ? "/" +
 export const abs = (sitePath, base = BASE) => base + sitePath.replace(/^\//, "");
 
 function isCurrent(v, url) {
-  const onV2 = url.pathname.startsWith("/v2");
-  if (v.path === "/v2/") return onV2;
-  if (onV2) return false;
-  return (url.searchParams.get("hero") === "inspect") === (v.params.hero === "inspect");
+  const p = url.pathname.replace(/index\.html$/, "");
+  if (v.path === "/") return !p.startsWith("/v2") && !p.startsWith("/v3");
+  return p.startsWith(v.path);
 }
 
 // Inner pages (plan 2026-09-30-inner-pages.md, exception (b)): each v1 page at /<path> has a v2
 // counterpart at /v2/<path>, and back. The homepages keep the options above unchanged.
-const HOMES = new Set(["/", "/index.html", "/v2", "/v2/", "/v2/index.html"]);
+const HOMES = new Set(["/", "/index.html", "/v2", "/v2/", "/v2/index.html",
+  "/v3/a/", "/v3/a/index.html", "/v3/b/", "/v3/b/index.html", "/v3/c/", "/v3/c/index.html"]);
 
 export function counterpartPath(pathname, base = BASE) {
   const r = rel(pathname, base);
@@ -76,7 +78,7 @@ function innerOptions(url, remembered = {}, base = BASE) {
   // Both v1 hero variants share the same inner pages, so both v1 options lead to the v1 page.
   return VERSIONS.map((v, i) => ({
     label: v.label,
-    href: (v.path === "/v2/" ? counterpartPath(v1, base) : v1) + qs,
+    href: (v.path === "/v2/" ? counterpartPath(v1, base) : v.path.startsWith("/v3/") ? abs(v.path, base) : v1) + qs,
     selected: onV2 ? v.path === "/v2/" : i === 0,
   }));
 }

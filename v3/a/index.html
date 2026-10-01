@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<style data-fli-gate-style>html:not(.fli-unlocked) body{visibility:hidden}
+.fli-gate{visibility:visible;position:fixed;inset:0;z-index:2147483646;display:grid;place-items:center;padding:1.5rem;background:#070F1A;color:#F2F5F8;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.fli-gate form{display:grid;gap:.75rem;width:min(100%,22rem)}
+.fli-gate h1{margin:0;font-size:1.25rem;font-weight:600}
+.fli-gate p{margin:0;color:#9AA6B4;font-size:.875rem}
+.fli-gate input,.fli-gate button{min-height:44px;padding:.5rem .9rem;border-radius:4px;font:inherit}
+.fli-gate input{border:1px solid #9AA6B4;background:#0E1B2B;color:#F2F5F8}
+.fli-gate button{border:0;background:#EF7A35;color:#142C47;font-weight:600;cursor:pointer}
+.fli-gate :focus-visible{outline:2px solid #5EC3E7;outline-offset:2px}
+.fli-gate [role=alert]{color:#F2F5F8;min-height:1.5em}</style>
+<noscript><style>body::before{content:"This preview needs JavaScript.";visibility:visible;display:block;padding:2rem;font:16px system-ui,sans-serif}</style></noscript>
+<script data-fli-gate data-hash="89a20574ad93f028d2f299640c63ec89e53c76b52c54193d6ed5d059a9e084ee">
+/* Review-copy password screen. A casual barrier, NOT security: every file is still downloadable
+   and this check runs in the browser (deploy plan, P3). */
+(function () {
+  var KEY = "fli-preview-unlocked", root = document.documentElement;
+  try { if (sessionStorage.getItem(KEY) === "1") { root.classList.add("fli-unlocked"); return; } } catch (e) {}
+  var want = document.currentScript.getAttribute("data-hash");
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
+  function show() {
+    var box = document.createElement("div");
+    box.className = "fli-gate";
+    box.innerHTML = '<form><h1>Frontline Integrity: design review</h1><p>This preview is private. Enter the password you were given.</p>' +
+      '<label for="fli-gate-pw">Password</label><input id="fli-gate-pw" type="password" autocomplete="current-password" required>' +
+      '<button type="submit">Open the preview</button><p role="alert"></p></form>';
+    document.body.appendChild(box);
+    var form = box.querySelector("form"), input = box.querySelector("input"), msg = box.querySelector("[role=alert]");
+    input.focus();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      crypto.subtle.digest("SHA-256", new TextEncoder().encode(input.value)).then(function (d) {
+        if (hex(d) !== want) { msg.textContent = "That password is not right. Please try again."; input.select(); return; }
+        try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+        // Reload once, unlocked, so the load-time animations (headline, hero opening) play in
+        // view rather than behind the screen. If storage is blocked, fall back to opening in place.
+        var stored = false;
+        try { stored = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
+        if (stored) { location.reload(); return; }
+        root.classList.add("fli-unlocked");
+        box.remove();
+      });
+    });
+  }
+  if (document.body) show(); else document.addEventListener("DOMContentLoaded", show);
+})();
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frontline Integrity | Find the few that matter</title>
+  <meta name="description" content="Pipeline integrity management from experienced independent consultants with expertise in pipeline crack management and crack detection inspections (EMAT and Ultrasonic).">
+  <meta name="theme-color" content="#F3F1EA">
+  <script>
+    // Before first paint: with motion allowed, the drawing waits to be plotted (a.css shows it after
+    // 3 s if main.js never runs, so a failed script never leaves an empty sheet)
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("js-motion");
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="a.css">
+  <link rel="icon" href="../../assets/brand/logo/fli-logo.svg" type="image/svg+xml">
+  <script src="../../vendor/gsap/gsap.min.js" defer></script>
+  <script src="../../vendor/gsap/ScrollTrigger.min.js" defer></script>
+  <script src="../../vendor/gsap/SplitText.min.js" defer></script>
+  <link rel="modulepreload" href="js/drawing.js">
+  <link rel="modulepreload" href="../shared/motion.js">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="site-header__logo" href="./" aria-label="Frontline Integrity home">
+      <svg class="fli-logo fli-logo--header" viewBox="0 0 133.978 26.788" aria-hidden="true" focusable="false">
+          <g class="fli-logo__lines">
+            <path class="fli-logo__line" d="M32.197 18.443h0.551v1.469h-0.551Z"/>
+            <path class="fli-logo__line" d="M32.197 24.494h0.551v1.469h-0.551Z"/>
+            <path class="fli-logo__line" d="M0.000 24.497h32.746v0.897h-32.746Z"/>
+            <path class="fli-logo__line" d="M0.000 19.011h32.746v0.896h-32.746Z"/>
+          </g>
+          <g class="fli-logo__frontline">
+            <path class="fli-logo__letter" data-letter="F" d="M0.044 0.145L8.886 0.145L8.886 2.806L3.408 2.806L3.408 5.614L8.888 5.614L8.888 8.297L3.432 8.297L3.432 13.903L0.044 13.903L0.044 0.145"/>
+            <path class="fli-logo__letter" data-letter="R" d="M17.586 2.596L17.586 6.178L18.319 6.178C20.088 6.178 20.972 5.547 20.972 4.282C20.972 3.767 20.741 3.356 20.282 3.050C19.823 2.746 19.184 2.593 18.367 2.593L17.586 2.593L17.586 2.596M14.175 0.145L19.350 0.145C20.923 0.145 22.167 0.507 23.082 1.235C23.998 1.960 24.453 2.942 24.453 4.177C24.453 4.884 24.244 5.617 23.826 6.377C23.407 7.136 22.633 7.735 21.506 8.167L25.901 13.900L22.011 13.900L17.943 8.578L17.559 8.578L17.559 13.900L14.175 13.900L14.175 0.145"/>
+            <path class="fli-logo__letter" data-letter="O" d="M37.374 2.741C36.058 2.720 34.998 3.117 34.192 3.936C33.387 4.752 32.984 5.807 32.984 7.101C32.984 8.323 33.395 9.338 34.216 10.141C35.038 10.944 36.074 11.346 37.328 11.346C38.644 11.346 39.707 10.949 40.518 10.157C41.329 9.365 41.732 8.318 41.732 7.018C41.732 5.740 41.334 4.712 40.542 3.939C39.745 3.160 38.690 2.762 37.374 2.741M29.451 7.018C29.451 4.986 30.218 3.308 31.754 1.984C33.290 0.660 35.111 0.000 37.216 0.000C39.543 0.000 41.471 0.665 42.994 1.995C44.516 3.326 45.279 5.007 45.279 7.040C45.279 9.059 44.524 10.734 43.018 12.069C41.509 13.403 39.611 14.069 37.323 14.069C35.033 14.069 33.148 13.406 31.668 12.079C30.192 10.750 29.451 9.064 29.451 7.018"/>
+            <path class="fli-logo__letter" data-letter="N" d="M60.943 0.145L64.256 0.145L64.256 13.903L60.959 13.903L53.777 4.997L53.777 13.903L50.388 13.903L50.388 0.145L53.736 0.145L60.943 8.989L60.943 0.145"/>
+            <path class="fli-logo__letter" data-letter="T" d="M68.789 0.145L79.354 0.145L79.354 3.069L75.754 3.069L75.754 13.903L72.368 13.903L72.368 3.066L68.792 3.066L68.792 0.145L68.789 0.145"/>
+            <path class="fli-logo__letter" data-letter="L" d="M84.128 0.145L87.490 0.145L87.490 10.936L92.121 10.936L92.121 13.900L84.128 13.900L84.128 0.145"/>
+            <path class="fli-logo__letter" data-letter="I" d="M96.796 0.145h3.386v13.758h-3.386Z"/>
+            <path class="fli-logo__letter" data-letter="N" d="M116.165 0.145L119.478 0.145L119.478 13.903L116.178 13.903L108.996 4.997L108.996 13.903L105.610 13.903L105.610 0.145L108.958 0.145L116.165 8.989L116.165 0.145"/>
+            <path class="fli-logo__letter" data-letter="E" d="M125.112 0.145L133.954 0.145L133.954 2.870L128.498 2.870L128.498 5.647L133.954 5.647L133.954 8.329L128.498 8.329L128.498 11.178L133.954 11.178L133.954 13.903L125.112 13.903L125.112 0.145"/>
+          </g>
+          <g class="fli-logo__integrity">
+            <path class="fli-logo__letter" data-letter="I" d="M32.748 17.675h3.329v9.005h-3.329Z"/>
+            <path class="fli-logo__letter" data-letter="N" d="M47.341 17.694L49.481 17.694L49.481 26.662L47.352 26.662L42.715 20.857L42.715 26.662L40.529 26.662L40.529 17.694L42.691 17.694L47.341 23.459L47.341 17.694"/>
+            <path class="fli-logo__letter" data-letter="T" d="M54.778 17.694L61.598 17.694L61.598 19.600L59.273 19.600L59.273 26.662L57.087 26.662L57.087 19.600L54.778 19.600L54.778 17.694"/>
+            <path class="fli-logo__letter" data-letter="E" d="M67.016 17.694L72.722 17.694L72.722 19.469L69.202 19.469L69.202 21.278L72.722 21.278L72.722 23.026L69.202 23.026L69.202 24.884L72.722 24.884L72.722 26.659L67.016 26.659L67.016 17.694"/>
+            <path class="fli-logo__letter" data-letter="G" d="M87.149 19.640L85.696 20.843C85.393 20.378 85.017 20.032 84.569 19.801C84.119 19.570 83.653 19.457 83.164 19.457C82.372 19.457 81.682 19.723 81.100 20.258C80.514 20.789 80.224 21.418 80.224 22.142C80.224 22.913 80.517 23.563 81.100 24.100C81.685 24.634 82.388 24.903 83.213 24.903C83.660 24.903 84.091 24.803 84.507 24.602C84.920 24.401 85.253 24.025 85.506 23.474L83.104 23.474L83.104 21.726L87.785 21.726L87.785 22.886C87.785 23.482 87.554 24.124 87.090 24.809C86.625 25.493 86.016 25.995 85.259 26.312C84.502 26.629 83.736 26.788 82.966 26.788C81.563 26.788 80.382 26.339 79.422 25.442C78.458 24.546 77.977 23.437 77.977 22.116C77.977 20.864 78.474 19.793 79.465 18.907C80.455 18.018 81.647 17.575 83.044 17.575C84.821 17.570 86.193 18.260 87.149 19.640"/>
+            <path class="fli-logo__letter" data-letter="R" d="M95.542 19.291L95.542 21.627L96.015 21.627C97.156 21.627 97.728 21.216 97.728 20.392C97.728 20.056 97.580 19.788 97.282 19.589C96.984 19.390 96.573 19.291 96.047 19.291L95.542 19.291M93.343 17.693L96.683 17.693C97.698 17.693 98.501 17.930 99.092 18.402C99.682 18.875 99.978 19.514 99.978 20.319C99.978 20.778 99.843 21.256 99.572 21.753C99.301 22.250 98.802 22.639 98.077 22.921L100.915 26.659L98.404 26.659L95.781 23.190L95.534 23.190L95.534 26.659L93.348 26.659L93.348 17.693L93.343 17.693"/>
+            <path class="fli-logo__letter" data-letter="I" d="M106.432 17.694h2.186v8.968h-2.186Z"/>
+            <path class="fli-logo__letter" data-letter="T" d="M113.907 17.694L120.727 17.694L120.727 19.600L118.402 19.600L118.402 26.662L116.216 26.662L116.216 19.600L113.907 19.600L113.907 17.694"/>
+            <path class="fli-logo__letter" data-letter="Y" d="M125.359 17.694L127.778 17.694L129.650 20.473L131.548 17.694L133.978 17.694L130.750 22.468L130.750 26.662L128.589 26.662L128.589 22.468L125.359 17.694"/>
+          </g>
+        </svg>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <!-- D4: the menu leads to the v1 inner pages -->
+      <ul class="site-nav__list">
+        <li><a href="../../services/">Services</a></li>
+        <li><a href="../../about/">About</a></li>
+        <li><a href="../../case-studies/">Case studies</a></li>
+        <li><a href="../../tech-hub/">Tech Hub</a></li>
+      </ul>
+    </nav>
+    <a class="site-header__contact" href="#contact">Contact</a>
+  </header>
+
+  <main id="main">
+        <section class="hero" data-hero aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <div class="hero__bar mono">
+          <p class="hero__dwg"><span class="hero__dwg-long">Dwg FLI-001 · Pipe section, two runs compared · </span>Illustrative data</p>
+          <a class="hero__skip" href="#sheet-2">Skip intro</a>
+        </div>
+        <div class="sheet">
+          <svg class="dwg" viewBox="0 0 1600 1000" role="img" aria-labelledby="dwg-title dwg-desc" preserveAspectRatio="xMidYMid meet">
+          <title id="dwg-title">Engineering drawing of a pipe section with two inspection runs compared. Illustrative.</title>
+          <desc id="dwg-desc">Elevation of a 3 metre length of pipe, chainage 1,283.0 m to 1,286.0 m, with two girth welds; section A-A; and Detail A, where the 2019 and 2024 wall profiles are drawn over each other and the matched feature is clouded. Callout: Internal metal loss · 5:30 · 18% wt (2019) to 23% wt (2024) · Illustrative data. Revision C: matched across runs.</desc>
+          <defs>
+  <pattern id="hatch" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><path class="hatch-line" d="M0 0 V7"/></pattern>
+  <pattern id="hatch-fine" patternUnits="userSpaceOnUse" width="3.2" height="3.2" patternTransform="rotate(45)"><path class="hatch-line" d="M0 0 V3.2"/></pattern>
+</defs>
+          <g class="frame">
+          <path class="plot w-fine c-line" d="M16 16 H1584 V984 H16 Z"/>
+          <path class="plot w-bold c-ink" d="M44 44 H1556 V956 H44 Z"/>
+          <path class="plot w-fine c-ink" data-sub="28" d="M233 16 V44 M233 956 V984 M422 16 V44 M422 956 V984 M611 16 V44 M611 956 V984 M800 16 V44 M800 956 V984 M989 16 V44 M989 956 V984 M1178 16 V44 M1178 956 V984 M1367 16 V44 M1367 956 V984 M16 196 H44 M1556 196 H1584 M16 348 H44 M1556 348 H1584 M16 500 H44 M1556 500 H1584 M16 652 H44 M1556 652 H1584 M16 804 H44 M1556 804 H1584"/>
+          <path class="plot w-bold c-ink" data-sub="40" d="M800 4 V44 M800 956 V996 M4 500 H44 M1556 500 H1596"/>
+          <g class="fade t-mono t-zone" text-anchor="middle"><text x="138.5" y="35">1</text><text x="138.5" y="975">1</text><text x="327.5" y="35">2</text><text x="327.5" y="975">2</text><text x="516.5" y="35">3</text><text x="516.5" y="975">3</text><text x="705.5" y="35">4</text><text x="705.5" y="975">4</text><text x="894.5" y="35">5</text><text x="894.5" y="975">5</text><text x="1083.5" y="35">6</text><text x="1083.5" y="975">6</text><text x="1272.5" y="35">7</text><text x="1272.5" y="975">7</text><text x="1461.5" y="35">8</text><text x="1461.5" y="975">8</text><text x="30" y="124.5">A</text><text x="1570" y="124.5">A</text><text x="30" y="276.5">B</text><text x="1570" y="276.5">B</text><text x="30" y="428.5">C</text><text x="1570" y="428.5">C</text><text x="30" y="580.5">D</text><text x="1570" y="580.5">D</text><text x="30" y="732.5">E</text><text x="1570" y="732.5">E</text><text x="30" y="884.5">F</text><text x="1570" y="884.5">F</text></g>
+          <g class="tbstrip">
+          <path class="plot w-med c-ink" d="M44 760 H1556"/>
+          <path class="plot w-fine c-ink" data-sub="196" d="M600 760 V956 M1160 760 V956"/>
+          <path class="plot w-fine c-ink" d="M1160 858 H1556"/>
+          <g class="fade t-mono t-strip"><text x="64" y="800">COMPANY</text><text x="64" y="880" class="t-strip-big">FRONTLINE INTEGRITY</text><text x="620" y="800">DESCRIPTION</text><text x="620" y="880" class="t-strip-mid">PIPE SECTION, TWO RUNS COMPARED</text><text x="1180" y="800">DWG NO.</text><text x="1180" y="836" class="t-strip-mid">FLI-001</text><text x="1370" y="800">REV</text><text x="1370" y="836" class="t-strip-mid">C</text><text x="1180" y="898">SHEET</text><text x="1180" y="934" class="t-strip-mid">1 OF 5</text><text x="1370" y="898">SCALE</text><text x="1370" y="934" class="t-strip-mid">AS SHOWN</text></g>
+          </g>
+          </g>
+          <g class="revtable">
+          <path class="plot w-fine c-ink" d="M1180 44 V112 H1556"/>
+          <path class="plot w-fine c-ink" d="M1180 64 H1556"/>
+          <path class="plot w-hair c-ink" d="M1180 88 H1556"/>
+          <path class="plot w-hair c-ink" data-sub="68" d="M1226 44 V112 M1474 44 V112"/>
+          <g class="fade t-mono t-rev"><text x="1192" y="58" class="t-rev-head">REV</text><text x="1238" y="58" class="t-rev-head">DESCRIPTION</text><text x="1486" y="58" class="t-rev-head">RUN</text><text x="1197" y="81">A</text><text x="1238" y="81">RUN 2019 PLOTTED</text><text x="1486" y="81">2019</text><text x="1197" y="105">B</text><text x="1238" y="105">RUN 2024 OVERLAID</text><text x="1486" y="105">2024</text></g>
+          <g class="rev-c">
+          <path class="plot w-fine c-ink" d="M1180 112 V136 H1556"/>
+          <path class="plot w-hair c-ink" data-sub="24" d="M1226 112 V136 M1474 112 V136"/>
+          <path class="plot w-med c-mark" d="M1203 116 L1213.5 132 H1192.5 Z"/>
+          <g class="t-mono t-rev rev-c__text"><text x="1203" y="129.5" class="t-rev-tri">C</text><text x="1238" y="129">MATCHED ACROSS RUNS</text><text x="1486" y="129">2024</text></g>
+          </g>
+          </g>
+          <g class="centre">
+          <path class="plot w-hair c-line d-centre" d="M168 190 H1432"/>
+          <path class="plot w-hair c-line d-centre" d="M170 528 H490"/>
+          <path class="plot w-hair c-line d-centre" d="M330 368 V688"/>
+          <path class="plot w-hair c-ink d-centre" d="M330 128 V252"/>
+          <path class="plot w-bold c-ink" d="M330 128 V142"/>
+          <path class="plot w-bold c-ink" d="M330 238 V252"/>
+          <path class="plot w-fine c-ink" d="M330 128 H306"/>
+          <path class="plot w-fine c-ink" d="M330 252 H306"/>
+          <g class="fade"><path class="fill-ink" d="M300 128 l9 -3.5 v7 Z"/><path class="fill-ink" d="M300 252 l9 -3.5 v7 Z"/></g>
+          <g class="fade t-label t-cut"><text x="292" y="133" text-anchor="end">A</text><text x="292" y="257" text-anchor="end">A</text></g>
+          </g>
+          <g class="elevation">
+          <path class="plot w-med c-ink" d="M200 150 H1400"/>
+          <path class="plot w-med c-ink" d="M200 230 H1400"/>
+          <path class="plot w-fine c-ink" d="M200 150 C184 163 184 177 200 190 C216 203 216 217 200 230"/>
+          <path class="plot w-fine c-ink" d="M200 150 C214 163 214 177 200 190"/>
+          <path class="plot w-fine c-ink" d="M1400 150 C1416 163 1416 177 1400 190 C1384 203 1384 217 1400 230"/>
+          <path class="plot w-fine c-ink" d="M1400 150 C1386 163 1386 177 1400 190"/>
+          <path class="plot w-hair c-line d-hidden" d="M206 159 H1394"/>
+          <path class="plot w-hair c-line d-hidden" d="M206 221 H1394"/>
+          <path class="plot w-fine c-ink" data-sub="80" d="M467 150 V230 M473 150 V230"/>
+          <path class="plot w-fine c-ink" data-sub="7" d="M466 150 Q470 143 474 150 M466 230 Q470 237 474 230"/>
+          <path class="plot w-fine c-ink" data-sub="80" d="M1007 150 V230 M1013 150 V230"/>
+          <path class="plot w-fine c-ink" data-sub="7" d="M1006 150 Q1010 143 1014 150 M1006 230 Q1010 237 1014 230"/>
+          <g class="fade t-mono t-note" text-anchor="middle"><text x="470" y="134">GW 0310</text><text x="1010" y="134">GW 0320</text></g>
+          <path class="plot w-fine c-ink" d="M600 120 H690"/>
+          <g class="fade"><path class="fill-ink" d="M700 120 l-11 -4 v8 Z"/><text class="t-mono t-note" x="600" y="112">FLOW</text></g>
+          <path class="plot w-hair c-ink" d="M200 238 V288"/>
+          <path class="plot w-hair c-ink" d="M1400 238 V288"/>
+          <path class="plot w-hair c-ink" d="M200 280 H1400"/>
+          <g class="fade"><path class="fill-ink" d="M200 280 l13 -3.5 v7 Z"/><path class="fill-ink" d="M1400 280 l-13 -3.5 v7 Z"/></g>
+          <g class="fade t-mono t-dim"><text x="210" y="273">CH 1,283.0</text><text x="1390" y="273" text-anchor="end">CH 1,286.0</text><text x="800" y="273" text-anchor="middle">3.0 m</text></g>
+          <g class="fade t-label t-view"><text x="200" y="104">ELEVATION</text><text class="t-mono t-scale" x="200" y="120">SCALE 1:20</text></g>
+          </g>
+          <g class="section">
+          <path class="fill-hatch fade" fill-rule="evenodd" d="M330 390 A138 138 0 1 1 330 666 A138 138 0 1 1 330 390 M330 404 A124 124 0 1 1 330 652 A124 124 0 1 1 330 404"/>
+          <path class="plot w-med c-ink" d="M330 390 A138 138 0 1 1 330 666 A138 138 0 1 1 330 390"/>
+          <path class="plot w-fine c-ink" d="M330 404 A124 124 0 1 1 330 652 A124 124 0 1 1 330 404"/>
+          <path class="plot w-hair c-ink" data-sub="10" d="M330 384 L330 374 M367.27 388.91 L368.56 384.08 M402 403.29 L407 394.63 M431.82 426.18 L435.36 422.64 M454.71 456 L463.37 451 M469.09 490.73 L473.92 489.44 M474 528 L484 528 M469.09 565.27 L473.92 566.56 M454.71 600 L463.37 605 M431.82 629.82 L435.36 633.36 M402 652.71 L407 661.37 M367.27 667.09 L368.56 671.92 M330 672 L330 682 M292.73 667.09 L291.44 671.92 M258 652.71 L253 661.37 M228.18 629.82 L224.64 633.36 M205.29 600 L196.63 605 M190.91 565.27 L186.08 566.56 M186 528 L176 528 M190.91 490.73 L186.08 489.44 M205.29 456 L196.63 451 M228.18 426.18 L224.64 422.64 M258 403.29 L253 394.63 M292.73 388.91 L291.44 384.08"/>
+          <g class="fade t-mono t-clock" text-anchor="middle"><text x="330" y="358.5">12</text><text x="504" y="532.5">3</text><text x="330" y="706.5">6</text><text x="156" y="532.5">9</text></g>
+          <path class="plot w-hair c-ink" d="M330 528 L361.58 645.84"/>
+          <path class="plot w-fine c-ink" d="M361.58 645.84 L376.07 699.93 H420.07"/>
+          <g class="fade"><circle class="fill-ink" cx="361.58" cy="645.84" r="2.6"/><text class="t-mono t-note" x="380.07" y="693.93">5:30</text></g>
+          <g class="fade t-label t-view" text-anchor="middle"><text x="330" y="726">SECTION A-A</text><text class="t-mono t-scale" x="330" y="742">SCALE 1:10</text></g>
+          </g>
+          <g class="notes fade t-mono t-note">
+          <text class="t-label t-view" x="590" y="356">NOTES</text>
+          <text x="590" y="386" xml:space="preserve">1. ILLUSTRATIVE DATA. NOT FROM A CLIENT PIPELINE.</text>
+          <text x="590" y="406" xml:space="preserve">2. DEPTHS IN % OF NOMINAL WALL THICKNESS (% WT).</text>
+          <text x="590" y="426" xml:space="preserve">3. RUNS ALIGNED ON GIRTH WELDS GW 0310 AND 0320.</text>
+          <text x="590" y="446" xml:space="preserve">4. CHAINAGE IN METRES. CLOCK POSITION LOOKING</text>
+          <text x="590" y="466" xml:space="preserve">   DOWNSTREAM.</text>
+          <text class="t-label t-view" x="590" y="526">LEGEND</text>
+          </g>
+          <g class="legend">
+          <path class="plot w-med c-ink d-run" d="M590 556 H650"/>
+          <path class="plot w-bold c-teal" d="M590 586 H650"/>
+          <path class="plot w-hair c-line d-phantom" d="M590 616 H650"/>
+          <path class="plot w-med c-mark" d="M620 637 A13.25 13.25 0 0 1 641.21 639.64 A6.73 6.73 0 0 1 650 646 A6.73 6.73 0 0 1 641.21 652.36 A13.25 13.25 0 0 1 620 655 A13.25 13.25 0 0 1 598.79 652.36 A6.73 6.73 0 0 1 590 646 A6.73 6.73 0 0 1 598.79 639.64 A13.25 13.25 0 0 1 620 637"/>
+          <g class="fade t-mono t-note"><text x="668" y="560">RUN 2019 (WALL PROFILE)</text><text x="668" y="590">RUN 2024 (WALL PROFILE)</text><text x="668" y="620">NOMINAL INTERNAL SURFACE</text><text x="668" y="650">MARK-UP: MATCHED FEATURE</text></g>
+          </g>
+          <g class="detail">
+          <path class="plot w-fine c-ink" d="M1180 188 A34 34 0 1 1 1180 256 A34 34 0 1 1 1180 188"/>
+          <g class="fade t-label t-bubble"><text x="1222" y="266">A</text></g>
+          <path class="plot w-med c-ink" d="M980 300 H1380 V550 H980 Z"/>
+          <g class="fade t-label"><text class="t-detail" x="992" y="318">DETAIL A</text><text class="t-mono t-dsmall" x="992" y="327">SCALE 10:1</text></g>
+          <path class="fill-hatch-fine fade" d="M990 360 H1370 C1365 373 1375 386 1370 400 C1365 413 1375 426 1370 440 H1290 L1290 440 L1288 440 L1286 440 L1284 439.99 L1282 440 L1280 440 L1278 439.99 L1276 439.99 L1274 439.98 L1272 439.99 L1270 439.96 L1268 439.96 L1266 439.98 L1264 440 L1262 440 L1260 440 L1258 439.97 L1256 439.93 L1254 439.94 L1252 439.87 L1250 439.91 L1248 439.83 L1246 439.87 L1244 439.8 L1242 439.71 L1240 439.59 L1238 439.38 L1236 439.25 L1234 438.9 L1232 438.51 L1230 438 L1228 437.42 L1226 436.68 L1224 435.65 L1222 434.5 L1220 433.07 L1218 431.51 L1216 429.91 L1214 428.62 L1212 427.4 L1210 426.23 L1208 425.37 L1206 424.93 L1204 424.75 L1202 424.75 L1200 424.99 L1198 425.3 L1196 425.53 L1194 425.73 L1192 425.79 L1190 425.64 L1188 425.23 L1186 424.67 L1184 424.29 L1182 423.65 L1180 423.09 L1178 422.58 L1176 422.42 L1174 422.29 L1172 421.98 L1170 421.84 L1168 421.6 L1166 421.77 L1164 421.89 L1162 422.51 L1160 422.99 L1158 423.91 L1156 425.05 L1154 426.25 L1152 427.29 L1150 428.17 L1148 429.21 L1146 430.52 L1144 431.83 L1142 432.92 L1140 433.72 L1138 434.72 L1136 435.49 L1134 436.4 L1132 436.96 L1130 437.5 L1128 437.94 L1126 438.29 L1124 438.71 L1122 438.95 L1120 439.18 L1118 439.42 L1116 439.54 L1114 439.7 L1112 439.79 L1110 439.91 L1108 439.92 L1106 439.84 L1104 439.83 L1102 439.86 L1100 439.92 L1098 439.94 L1096 439.97 L1094 439.96 L1092 439.96 L1090 439.93 L1088 439.96 L1086 439.99 L1084 440 L1082 440 L1080 440 L1078 439.99 L1076 440 L1074 439.98 L1072 439.99 L1070 439.98 L1068 439.99 L1066 440 L1064 440 L1062 440 L1060 440 H990 Z"/>
+          <path class="plot w-med c-ink" d="M990 360 H1370"/>
+          <path class="plot w-fine c-ink" d="M990 360 C985 373 995 386 990 400 C985 413 995 426 990 440"/>
+          <path class="plot w-fine c-ink" d="M1370 360 C1365 373 1375 386 1370 400 C1365 413 1375 426 1370 440"/>
+          <path class="plot w-med c-ink" d="M990 440 H1060"/>
+          <path class="plot w-med c-ink" d="M1290 440 H1370"/>
+          <path class="plot w-hair c-line d-phantom" d="M1060 440 H1290"/>
+          <rect class="fill-paper fade" x="1312" y="402" width="40" height="44"/>
+          <path class="plot w-hair c-ink" d="M1324 440 V416"/>
+          <path class="plot w-hair c-ink" data-sub="3" d="M1321 440 H1324 M1321 432 H1324 M1321 424 H1324 M1321 416 H1324"/>
+          <g class="fade t-mono t-dsmall"><text x="1327" y="441.6">0</text><text x="1327" y="433.6">10</text><text x="1327" y="425.6">20</text><text x="1327" y="417.6">30</text><text x="1316" y="409">% WT</text></g>
+          <g class="fade t-mono t-dsmall t-muted"><text x="1000" y="355">EXTERNAL SURFACE</text><text x="1000" y="452">BORE</text><text x="1264" y="452">NOMINAL INTERNAL SURFACE</text></g>
+          </g>
+          <g class="profiles">
+          <path class="fill-loss" d="M1060 440 L1060 440 L1062 440 L1064 440 L1066 440 L1068 439.99 L1070 439.98 L1072 439.99 L1074 439.98 L1076 440 L1078 439.99 L1080 440 L1082 440 L1084 440 L1086 439.99 L1088 439.96 L1090 439.93 L1092 439.96 L1094 439.96 L1096 439.97 L1098 439.94 L1100 439.92 L1102 439.86 L1104 439.83 L1106 439.84 L1108 439.92 L1110 439.91 L1112 439.79 L1114 439.7 L1116 439.54 L1118 439.42 L1120 439.18 L1122 438.95 L1124 438.71 L1126 438.29 L1128 437.94 L1130 437.5 L1132 436.96 L1134 436.4 L1136 435.49 L1138 434.72 L1140 433.72 L1142 432.92 L1144 431.83 L1146 430.52 L1148 429.21 L1150 428.17 L1152 427.29 L1154 426.25 L1156 425.05 L1158 423.91 L1160 422.99 L1162 422.51 L1164 421.89 L1166 421.77 L1168 421.6 L1170 421.84 L1172 421.98 L1174 422.29 L1176 422.42 L1178 422.58 L1180 423.09 L1182 423.65 L1184 424.29 L1186 424.67 L1188 425.23 L1190 425.64 L1192 425.79 L1194 425.73 L1196 425.53 L1198 425.3 L1200 424.99 L1202 424.75 L1204 424.75 L1206 424.93 L1208 425.37 L1210 426.23 L1212 427.4 L1214 428.62 L1216 429.91 L1218 431.51 L1220 433.07 L1222 434.5 L1224 435.65 L1226 436.68 L1228 437.42 L1230 438 L1232 438.51 L1234 438.9 L1236 439.25 L1238 439.38 L1240 439.59 L1242 439.71 L1244 439.8 L1246 439.87 L1248 439.83 L1250 439.91 L1252 439.87 L1254 439.94 L1256 439.93 L1258 439.97 L1260 440 L1262 440 L1264 440 L1266 439.98 L1268 439.96 L1270 439.96 L1272 439.99 L1274 439.98 L1276 439.99 L1278 439.99 L1280 440 L1282 440 L1284 439.99 L1286 440 L1288 440 L1290 440 L1290 440 Z"/>
+          <path class="plot w-bold c-teal run-2024" d="M1060 440 L1062 440 L1064 440 L1066 440 L1068 439.99 L1070 439.98 L1072 439.99 L1074 439.98 L1076 440 L1078 439.99 L1080 440 L1082 440 L1084 440 L1086 439.99 L1088 439.96 L1090 439.93 L1092 439.96 L1094 439.96 L1096 439.97 L1098 439.94 L1100 439.92 L1102 439.86 L1104 439.83 L1106 439.84 L1108 439.92 L1110 439.91 L1112 439.79 L1114 439.7 L1116 439.54 L1118 439.42 L1120 439.18 L1122 438.95 L1124 438.71 L1126 438.29 L1128 437.94 L1130 437.5 L1132 436.96 L1134 436.4 L1136 435.49 L1138 434.72 L1140 433.72 L1142 432.92 L1144 431.83 L1146 430.52 L1148 429.21 L1150 428.17 L1152 427.29 L1154 426.25 L1156 425.05 L1158 423.91 L1160 422.99 L1162 422.51 L1164 421.89 L1166 421.77 L1168 421.6 L1170 421.84 L1172 421.98 L1174 422.29 L1176 422.42 L1178 422.58 L1180 423.09 L1182 423.65 L1184 424.29 L1186 424.67 L1188 425.23 L1190 425.64 L1192 425.79 L1194 425.73 L1196 425.53 L1198 425.3 L1200 424.99 L1202 424.75 L1204 424.75 L1206 424.93 L1208 425.37 L1210 426.23 L1212 427.4 L1214 428.62 L1216 429.91 L1218 431.51 L1220 433.07 L1222 434.5 L1224 435.65 L1226 436.68 L1228 437.42 L1230 438 L1232 438.51 L1234 438.9 L1236 439.25 L1238 439.38 L1240 439.59 L1242 439.71 L1244 439.8 L1246 439.87 L1248 439.83 L1250 439.91 L1252 439.87 L1254 439.94 L1256 439.93 L1258 439.97 L1260 440 L1262 440 L1264 440 L1266 439.98 L1268 439.96 L1270 439.96 L1272 439.99 L1274 439.98 L1276 439.99 L1278 439.99 L1280 440 L1282 440 L1284 439.99 L1286 440 L1288 440 L1290 440"/>
+          <path class="plot w-med c-ink d-run run-2019" d="M1060 440 L1062 440 L1064 440 L1066 440 L1068 439.99 L1070 439.98 L1072 439.99 L1074 439.98 L1076 440 L1078 439.99 L1080 440 L1082 440 L1084 440 L1086 439.99 L1088 439.96 L1090 439.94 L1092 439.96 L1094 439.97 L1096 439.99 L1098 439.96 L1100 439.94 L1102 439.89 L1104 439.88 L1106 439.91 L1108 440 L1110 440 L1112 439.95 L1114 439.91 L1116 439.81 L1118 439.76 L1120 439.6 L1122 439.48 L1124 439.35 L1126 439.06 L1128 438.84 L1130 438.56 L1132 438.17 L1134 437.79 L1136 437.05 L1138 436.45 L1140 435.61 L1142 434.97 L1144 434.03 L1146 432.87 L1148 431.7 L1150 430.79 L1152 430.04 L1154 429.14 L1156 428.07 L1158 427.09 L1160 426.33 L1162 426.02 L1164 425.6 L1166 425.68 L1168 425.67 L1170 426.03 L1172 426.29 L1174 426.72 L1176 426.97 L1178 427.24 L1180 427.87 L1182 428.54 L1184 429.29 L1186 429.78 L1188 430.44 L1190 430.95 L1192 431.2 L1194 431.23 L1196 431.14 L1198 431.02 L1200 430.83 L1202 430.73 L1204 430.87 L1206 431.18 L1208 431.7 L1210 432.56 L1212 433.61 L1214 434.56 L1216 435.43 L1218 436.49 L1220 437.42 L1222 438.17 L1224 438.68 L1226 439.1 L1228 439.31 L1230 439.45 L1232 439.6 L1234 439.72 L1236 439.87 L1238 439.85 L1240 439.95 L1242 439.98 L1244 440 L1246 440 L1248 439.97 L1250 440 L1252 439.95 L1254 440 L1256 439.97 L1258 440 L1260 440 L1262 440 L1264 440 L1266 439.99 L1268 439.97 L1270 439.97 L1272 440 L1274 439.98 L1276 439.99 L1278 439.99 L1280 440 L1282 440 L1284 439.99 L1286 440 L1288 440 L1290 440"/>
+          </g>
+          <g class="cloud">
+          <path class="plot w-med c-mark" d="M1170 407 A21.02 21.02 0 0 1 1203.84 409.08 A17.21 17.21 0 0 1 1230.98 414.91 A10.7 10.7 0 0 1 1246.04 423.33 A5.79 5.79 0 0 1 1246.04 432.67 A10.7 10.7 0 0 1 1230.98 441.09 A17.21 17.21 0 0 1 1203.84 446.92 A21.02 21.02 0 0 1 1170 449 A21.02 21.02 0 0 1 1136.16 446.92 A17.21 17.21 0 0 1 1109.02 441.09 A10.7 10.7 0 0 1 1093.96 432.67 A5.79 5.79 0 0 1 1093.96 423.33 A10.7 10.7 0 0 1 1109.02 414.91 A17.21 17.21 0 0 1 1136.16 409.08 A21.02 21.02 0 0 1 1170 407"/>
+          <path class="plot w-fine c-mark" d="M1082 458 L1090 472 H1074 Z"/>
+          <text class="t-mono t-tri" x="1082" y="470.2" text-anchor="middle">C</text>
+          </g>
+          <g class="callout">
+          <path class="plot w-fine c-ink" d="M1232 412 L1250 352 H1374"/>
+          <circle class="fill-ink" cx="1232" cy="412" r="1.4"/>
+          <g class="callout__text"><text class="t-label t-co1" x="1252" y="320">Internal metal loss</text><text class="t-mono t-co2" x="1252" y="333">5:30 · 18% wt (2019) to 23% wt (2024)</text><text class="t-mono t-co3" x="1252" y="345">Illustrative data</text></g>
+          </g>
+          <g class="crosshair" aria-hidden="true"><line class="crosshair__h" x1="0" x2="1600" y1="-10" y2="-10"/><line class="crosshair__v" x1="-10" x2="-10" y1="0" y2="1000"/></g>
+        </svg>
+          <p class="hero__note mono" aria-hidden="true">Detail A: Internal metal loss · 5:30 · 18% wt (2019) to 23% wt (2024) · Illustrative data</p>
+          <div class="titleblock">
+            <div class="tb-cell tb-cell--title">
+              <p class="tb-label mono" aria-hidden="true">Title</p>
+              <h1 class="tb-title" id="hero-title">Find the few that matter.</h1>
+            </div>
+            <div class="tb-cell tb-cell--desc">
+              <p class="tb-label mono" aria-hidden="true">Description</p>
+              <p class="tb-lede">Providing independent engineering consultancy and bespoke software solutions to pipeline operators globally within the energy and mining sectors.</p>
+            </div>
+            <div class="tb-cell tb-cell--meta">
+              <dl class="tb-meta mono" aria-hidden="true">
+                <div><dt>Dwg</dt><dd>FLI-001</dd></div>
+                <div><dt>Rev</dt><dd data-rev>C</dd></div>
+                <div><dt>Sheet</dt><dd>1 of 5</dd></div>
+                <div><dt>Scale</dt><dd>As shown</dd></div>
+              </dl>
+              <p class="tb-action"><a class="button" href="#contact">Book a free consultation</a></p>
+            </div>
+          </div>
+          <div class="readout mono" aria-hidden="true" hidden><span class="readout__value" data-readout></span><span class="readout__foot">Illustrative data</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHEET 2: figures as dimension call-outs. Figures confirmed by Lewis (30 September 2026);
+         heading and labels as v1 and v2 (approved). -->
+    <section class="sheet-sec sampler-figures" id="sheet-2" aria-labelledby="figures-title">
+      <div class="container">
+        <div class="dimline" aria-hidden="true"><span class="dimline__label mono">Sheet 2 of 5</span></div>
+        <div class="sec-head">
+          <p class="sec-head__label mono">Work to date</p>
+          <h2 class="sec-head__title" id="figures-title">Since April 2020</h2>
+        </div>
+        <dl class="figs">
+          <div class="fig"><dt class="fig__label mono">Pipelines</dt><dd class="fig__value" data-figure="pipelines">642</dd><span class="fig__dim" aria-hidden="true"></span></div>
+          <div class="fig"><dt class="fig__label mono">Kilometres of pipeline</dt><dd class="fig__value" data-figure="km">21,942</dd><span class="fig__dim" aria-hidden="true"></span></div>
+          <div class="fig"><dt class="fig__label mono">Projects completed</dt><dd class="fig__value" data-figure="projects">175</dd><span class="fig__dim" aria-hidden="true"></span></div>
+          <div class="fig"><dt class="fig__label mono">Companies</dt><dd class="fig__value" data-figure="companies">24</dd><span class="fig__dim" aria-hidden="true"></span></div>
+        </dl>
+      </div>
+    </section>
+
+        <section class="sheet-sec" id="sheet-3" aria-labelledby="services-title">
+      <div class="container">
+        <div class="dimline" aria-hidden="true"><span class="dimline__label mono">Sheet 3 of 5</span></div>
+        <div class="sec-head">
+          <p class="sec-head__label mono">Consultancy</p>
+          <h2 class="sec-head__title" id="services-title">All credible threats</h2>
+          <p class="sec-head__lede">We support operators with best practice integrity management consultancy covering all credible pipeline threats. From detailed fracture mechanics to auditing an entire PIMS, our support is industry leading.</p>
+        </div>
+        <div class="register">
+          <p class="register__head mono" aria-hidden="true"><span>No.</span><span>Title</span><span>Rev</span></p>
+          <ol class="sampler-services register__list">
+            <li data-service="crack-management"><a class="reg" href="../../services/crack-management/"><span class="reg__no mono">S-01</span><span class="reg__title">Crack management</span><span class="reg__rev mono"><span class="visually-hidden">Revision </span>A</span><span class="reg__go" aria-hidden="true"></span></a></li>
+            <li data-service="ili-advisory"><a class="reg" href="../../services/ili-advisory/"><span class="reg__no mono">S-02</span><span class="reg__title">ILI advisory</span><span class="reg__rev mono"><span class="visually-hidden">Revision </span>A</span><span class="reg__go" aria-hidden="true"></span></a></li>
+            <li data-service="pims"><a class="reg" href="../../services/pims/"><span class="reg__no mono">S-03</span><span class="reg__title">PIMS</span><span class="reg__rev mono"><span class="visually-hidden">Revision </span>A</span><span class="reg__go" aria-hidden="true"></span></a></li>
+            <li data-service="additional-engineering"><a class="reg" href="../../services/additional-engineering/"><span class="reg__no mono">S-04</span><span class="reg__title">Additional engineering</span><span class="reg__rev mono"><span class="visually-hidden">Revision </span>A</span><span class="reg__go" aria-hidden="true"></span></a></li>
+            <li data-service="software"><a class="reg" href="../../services/software/"><span class="reg__no mono">S-05</span><span class="reg__title">Software</span><span class="reg__rev mono"><span class="visually-hidden">Revision </span>A</span><span class="reg__go" aria-hidden="true"></span></a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+        <section class="sheet-sec" id="sheet-4" aria-labelledby="cases-title">
+      <div class="container">
+        <div class="dimline" aria-hidden="true"><span class="dimline__label mono">Sheet 4 of 5</span></div>
+        <div class="sec-head">
+          <p class="sec-head__label mono">Selected work</p>
+          <h2 class="sec-head__title" id="cases-title">Case studies</h2>
+        </div>
+        <ul class="sampler-cases cases">
+          <li data-case="ili-campaign-support">
+            <a class="case" href="../../case-studies/ili-campaign-support/">
+              <svg class="thumb" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+                <path class="plot t-frame" d="M8 8 H312 V192 H8 Z"/>
+                <path class="plot t-line" d="M24 66 H296"/>
+                <path class="plot t-line" d="M24 134 H296"/>
+                <path class="plot t-cl" d="M16 100 H304"/>
+                <path class="plot t-line" d="M112 82 H196 A18 18 0 0 1 196 118 H112 A18 18 0 0 1 112 82 Z"/>
+                <path class="plot t-line" d="M126 70 V130"/>
+                <path class="plot t-line" d="M184 70 V130"/>
+                <path class="plot t-line" d="M214 100 H236"/>
+                <path class="plot t-fine" d="M218 112 A6 6 0 1 1 230 112 A6 6 0 1 1 218 112"/>
+                <path class="plot t-fine" d="M60 100 H92"/>
+                <path class="t-fill" d="M100 100 l-9 -3.5 v7 Z"/>
+                <path class="plot t-fine" d="M24 160 H296"/>
+                <path class="plot t-fine" d="M24 154 V166 M296 154 V166"/>
+              </svg>
+              <div class="case__tb">
+                <p class="case__meta mono"><span>CS-01</span><span>ILI services</span></p>
+                <h3 class="case__title">ILI campaign support</h3>
+                <p class="case__region mono">South America</p>
+              </div>
+            </a>
+          </li>
+          <li data-case="crack-fatigue-study-2">
+            <a class="case" href="../../case-studies/crack-fatigue-study-2/">
+              <svg class="thumb" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+                <path class="plot t-frame" d="M8 8 H312 V192 H8 Z"/>
+                <path class="plot t-line" d="M92 38 A62 62 0 1 1 92 162 A62 62 0 1 1 92 38"/>
+                <path class="plot t-fine" d="M92 60 A40 40 0 1 1 92 140 A40 40 0 1 1 92 60"/>
+                <path class="plot t-cl" d="M22 100 H162"/>
+                <path class="plot t-cl" d="M92 30 V170"/>
+                <path class="plot t-line" d="M120.3 71.7 L124 67 L122.6 65.4 L127 62 L125.8 60.2 L129.5 57.8"/>
+                <path class="plot t-fine" d="M184 150 H300"/>
+                <path class="plot t-fine" d="M184 150 V50"/>
+                <path class="plot t-line" d="M184 112 C192 70 200 70 208 112 S224 150 232 112 S248 82 256 112 S272 140 280 112 S292 92 300 112"/>
+              </svg>
+              <div class="case__tb">
+                <p class="case__meta mono"><span>CS-02</span><span>Pipeline integrity</span></p>
+                <h3 class="case__title">Crack fatigue study</h3>
+                <p class="case__region mono">UK</p>
+              </div>
+            </a>
+          </li>
+          <li data-case="which-metal-loss-ili-tool-should-i-run">
+            <a class="case" href="../../case-studies/which-metal-loss-ili-tool-should-i-run/">
+              <svg class="thumb" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+                <path class="plot t-frame" d="M8 8 H312 V192 H8 Z"/>
+                <path class="plot t-line" d="M24 40 H296"/>
+                <path class="plot t-line" d="M24 86 H296"/>
+                <path class="plot t-line" d="M70 50 H170 A13 13 0 0 1 170 76 H70 A13 13 0 0 1 70 50 Z"/>
+                <path class="plot t-fine" d="M88 50 V76 M100 50 V76 M140 50 V76 M152 50 V76"/>
+                <path class="plot t-line" d="M24 114 H296"/>
+                <path class="plot t-line" d="M24 160 H296"/>
+                <path class="plot t-line" d="M120 124 H220 A13 13 0 0 1 220 150 H120 A13 13 0 0 1 120 124 Z"/>
+                <path class="plot t-fine" d="M132 124 V150 M140 124 V150 M148 124 V150 M156 124 V150 M164 124 V150 M172 124 V150 M180 124 V150 M188 124 V150 M196 124 V150 M204 124 V150"/>
+                <path class="plot t-cl" d="M16 63 H304"/>
+                <path class="plot t-cl" d="M16 137 H304"/>
+                <path class="plot t-fine" d="M236 172 H284"/>
+                <path class="t-fill" d="M292 172 l-9 -3.5 v7 Z"/>
+              </svg>
+              <div class="case__tb">
+                <p class="case__meta mono"><span>CS-03</span><span>ILI services</span></p>
+                <h3 class="case__title">Which metal loss ILI tool should I run?</h3>
+                <p class="case__region mono">South America</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <p class="cases__all"><a class="link-arrow" href="../../case-studies/">All case studies</a></p>
+      </div>
+    </section>
+
+        <section class="sheet-sec close" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="dimline" aria-hidden="true"><span class="dimline__label mono">Sheet 5 of 5</span></div>
+        <div class="close__grid">
+          <div class="close__lead">
+            <p class="sec-head__label mono">Contact</p>
+            <h2 class="close__title" id="contact-title">Let’s talk</h2>
+            <p class="close__lede">Whether it’s remote support or in your office, we’re here to support you with pipeline integrity management.</p>
+            <p class="close__actions">
+              <a class="sampler-cta" href="mailto:enquiries@frontlineintegrity.co.uk?subject=Consultation%20request">Book a free consultation</a>
+              <a class="button button--ghost" href="tel:+441918161574">+44 (0)191 816 1574</a>
+            </p>
+          </div>
+          <dl class="close__block mono">
+            <div><dt>Email</dt><dd><a href="mailto:enquiries@frontlineintegrity.co.uk">enquiries@frontlineintegrity.co.uk</a></dd></div>
+            <div><dt>Telephone</dt><dd><a href="tel:+441918161574">+44 (0)191 816 1574</a></dd></div>
+            <div><dt>Office</dt><dd>3 Kingfisher Way, Silverlink Business Park, Newcastle upon Tyne, NE28 9NX</dd></div>
+            <div><dt>Replies</dt><dd>Within 48 hours</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <nav class="site-footer__nav" aria-label="Footer">
+        <ul>
+          <li><a href="../../services/">Services</a></li>
+          <li><a href="../../about/">About</a></li>
+          <li><a href="../../case-studies/">Case studies</a></li>
+          <li><a href="../../tech-hub/">Tech Hub</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__legal mono">Frontline Integrity Ltd. Company number 12549777.</p>
+    </div>
+  </footer>
+  <script type="module" src="../../shared/version-switcher.js"></script>  <!-- review tool: remove before launch -->
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<style data-fli-gate-style>html:not(.fli-unlocked) body{visibility:hidden}
+.fli-gate{visibility:visible;position:fixed;inset:0;z-index:2147483646;display:grid;place-items:center;padding:1.5rem;background:#070F1A;color:#F2F5F8;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.fli-gate form{display:grid;gap:.75rem;width:min(100%,22rem)}
+.fli-gate h1{margin:0;font-size:1.25rem;font-weight:600}
+.fli-gate p{margin:0;color:#9AA6B4;font-size:.875rem}
+.fli-gate input,.fli-gate button{min-height:44px;padding:.5rem .9rem;border-radius:4px;font:inherit}
+.fli-gate input{border:1px solid #9AA6B4;background:#0E1B2B;color:#F2F5F8}
+.fli-gate button{border:0;background:#EF7A35;color:#142C47;font-weight:600;cursor:pointer}
+.fli-gate :focus-visible{outline:2px solid #5EC3E7;outline-offset:2px}
+.fli-gate [role=alert]{color:#F2F5F8;min-height:1.5em}</style>
+<noscript><style>body::before{content:"This preview needs JavaScript.";visibility:visible;display:block;padding:2rem;font:16px system-ui,sans-serif}</style></noscript>
+<script data-fli-gate data-hash="89a20574ad93f028d2f299640c63ec89e53c76b52c54193d6ed5d059a9e084ee">
+/* Review-copy password screen. A casual barrier, NOT security: every file is still downloadable
+   and this check runs in the browser (deploy plan, P3). */
+(function () {
+  var KEY = "fli-preview-unlocked", root = document.documentElement;
+  try { if (sessionStorage.getItem(KEY) === "1") { root.classList.add("fli-unlocked"); return; } } catch (e) {}
+  var want = document.currentScript.getAttribute("data-hash");
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
+  function show() {
+    var box = document.createElement("div");
+    box.className = "fli-gate";
+    box.innerHTML = '<form><h1>Frontline Integrity: design review</h1><p>This preview is private. Enter the password you were given.</p>' +
+      '<label for="fli-gate-pw">Password</label><input id="fli-gate-pw" type="password" autocomplete="current-password" required>' +
+      '<button type="submit">Open the preview</button><p role="alert"></p></form>';
+    document.body.appendChild(box);
+    var form = box.querySelector("form"), input = box.querySelector("input"), msg = box.querySelector("[role=alert]");
+    input.focus();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      crypto.subtle.digest("SHA-256", new TextEncoder().encode(input.value)).then(function (d) {
+        if (hex(d) !== want) { msg.textContent = "That password is not right. Please try again."; input.select(); return; }
+        try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+        // Reload once, unlocked, so the load-time animations (headline, hero opening) play in
+        // view rather than behind the screen. If storage is blocked, fall back to opening in place.
+        var stored = false;
+        try { stored = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
+        if (stored) { location.reload(); return; }
+        root.classList.add("fli-unlocked");
+        box.remove();
+      });
+    });
+  }
+  if (document.body) show(); else document.addEventListener("DOMContentLoaded", show);
+})();
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FLI v3 mockups</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 2rem; max-width: 600px; margin: 0 auto; }
+    h1 { margin-bottom: 1.5rem; }
+    ul { list-style: none; padding: 0; }
+    li { margin-bottom: 1rem; }
+    a { color: inherit; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>FLI v3 mockups</h1>
+  <ul>
+    <li><a href="a/">A. Drawing office</a>: An engineering drawing sheet that plots itself, zooms into Detail A where two runs are compared, with orange mark-ups</li>
+    <li><a href="b/">B. Run A / Run B</a>: Two inspection runs side by side with a draggable axis that reads the change</li>
+    <li><a href="c/">C. Steel, close up</a>: Photo-led, the steel photo opens from a slit and shrinks into a card</li>
+  </ul>
+</body>
+</html>

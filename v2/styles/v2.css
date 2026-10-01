@@ -163,6 +163,8 @@ address { font-style: normal; }
 @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
   .motion .stages__list { display: flex; width: max-content; gap: 0; padding-right: 20vw; max-width: none; margin: 0; }
   .motion .stage { flex: 0 0 min(58vw, 50rem); padding-right: 6vw; border-top: 0; }
+  /* The pinned stage must fit the window: diagrams shrink on short screens (320:160 viewBox). */
+  .motion .stage__art { width: min(100%, 30rem, 56svh); }
   .motion .stages .stages__viewport { border-top: 1px solid var(--line); padding-top: 2rem; }
 }
 

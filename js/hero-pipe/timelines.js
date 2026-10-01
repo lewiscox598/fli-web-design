@@ -1,4 +1,4 @@
-// Scroll progress to scene pose for the two pipe hero versions (spec section 5). Pure: no three.js
+// Scroll progress to scene pose for the pipe hero (spec section 5). Pure: no three.js
 // and no DOM, so every pose is unit-tested.
 //
 // Pipe space as pipespace.js: the pipe runs along +X from its open end at x = 0, 12:00 is +Y and
@@ -41,7 +41,7 @@ function side(p, aspect, compact) {
 function base(p, aspect, compact) {
   return {
     ...side(p, aspect, compact),
-    u: 0, wall: 1, tool: null, scan: null, boxes: 0, dim: 0,
+    u: 0, wall: 1, dim: 0,
     highlight: smooth(0.52, 0.58, p),
     info: p >= INFO_OPEN && p <= INFO_CLOSE,
   };
@@ -75,31 +75,5 @@ export function bore(pIn, aspect = 16 / 9, compact = false) {
   pose.look = lerp3(ahead, [hs, PAIR[1] * 0.7, PAIR[2] * 0.7], aim);
   pose.wall = 1 - smooth(0.8, 0.95, p);
   pose.dim = smooth(0.85, 1, p);
-  return pose;
-}
-
-export function inspect(pIn, aspect = 16 / 9, compact = false) {
-  const p = clamp01(pIn);
-  const pose = base(p, aspect, compact);
-  if (p < 0.15) return pose;
-  const s0 = side(0.15, aspect, compact);
-  if (p < 0.45) {
-    pose.tool = lerp(-3000, 7000, (p - 0.15) / 0.3);   // linear, entering from off-screen left
-    pose.scan = pose.tool;
-    return pose;   // the camera holds still while the tool runs past (balance)
-  }
-  // Unroll and arrive at the pair by 0.57, so the pair is the subject before the info box's window
-  // (0.55 to 0.78) is well under way.
-  const t = smooth(0.45, 0.57, p);
-  const d = 3400 * Math.min(reach(aspect), 1.5);   // phones: close enough for the pair to read
-  pose.u = t;
-  pose.boxes = smooth(0.5, 0.57, p);
-  pose.cam = lerp3(s0.cam, [highlight.s, 0, R + d], t);
-  pose.look = lerp3(s0.look, [highlight.s, 0, R], t);
-  if (p > 0.8) {
-    const b = smooth(0.8, 1, p);
-    pose.cam = [highlight.s, 0, R + d * (1 + 1.5 * b)];
-    pose.dim = 0.85 * b;
-  }
   return pose;
 }

@@ -1,0 +1,322 @@
+/* v3 Direction C, "Steel, close up" (directions section 2C). Dark charcoal, photo-led, very large
+   Big Shoulders type. Orange is the one hot colour: small marks (reticle corners, ticks) and the
+   button's background, never text. The photos are the approved greyscale stock masters, graded here
+   (contrast, and a slight navy tint by multiply). The static state is the default: the hero photo
+   full bleed, no pin. That is what reduced motion and JavaScript-off show. */
+
+/* A metric-matched fallback while Big Shoulders loads: Impact scaled to the same set width (measured:
+   "Find the few that matter." is 932 units in Big Shoulders 800 and 973 in Impact), so the headline
+   wraps to the same lines and the lede and button do not move when the web font swaps in. */
+@font-face { font-family: "Big Shoulders fallback"; src: local("Impact"); size-adjust: 95.8%; }
+
+:root {
+  /* Colour */
+  --ground: #101418;          /* charcoal: the page */
+  --paper: #101418;           /* the same charcoal, under the name the contrast tool's bad-pair test uses */
+  --raised: #181E24;          /* hover rows, the case cards' text panel */
+  --text: #F2F5F8;
+  --muted: #A3ADB8;           /* labels, numbers, notes */
+  --orange: #EF7A35;          /* FLI orange: marks and the button's background only, never text */
+  --orange-hi: #F59A63;       /* the button on hover (charcoal text stays) */
+  --navy: #142C47;            /* the photo tint, by multiply */
+  --rule: rgb(242 245 248 / 0.16);
+  --scrim: rgb(16 20 24 / 0.55);   /* behind the hero copy only, at the brief's 55 percent maximum */
+  --chip: rgb(16 20 24 / 0.86);    /* behind the photo credits and Skip intro */
+  --photo-white: #FFFFFF;     /* the brightest a photo pixel can be: the worst case under a chip */
+
+  /* Type */
+  --font-display: "Big Shoulders Display", "Big Shoulders fallback", Impact, "Arial Narrow", sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+
+  /* Space */
+  --header-h: 4rem;
+  --edge: 6vw;                /* matches the card's right inset (aperture.js CARD.right = 6) */
+  --gutter: clamp(1rem, 6vw, 6rem);
+  --page-max: 100rem;
+  --hero-h: calc(100svh - var(--header-h));
+}
+@media (max-width: 639.98px) {
+  :root { --header-h: 3.5rem; --edge: 1rem; --gutter: 1rem; }
+}
+
+/* Base */
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: var(--header-h); height: auto; background: var(--ground); }
+body {
+  height: auto; background: var(--ground); color: var(--text);
+  font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.55;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: clip;
+  font-variant-numeric: tabular-nums;
+}
+ul[class], ol[class] { list-style: none; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 0.88; letter-spacing: -0.01em; text-wrap: balance; }
+p { text-wrap: pretty; }
+figure { margin: 0; }
+.container { width: 100%; max-width: var(--page-max); margin-inline: auto; padding-inline: var(--gutter); }
+.skip-link { top: -5rem; background: var(--text); color: var(--ground); font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1rem; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+/* The photo grade: the greyscale masters, contrast up and a slight navy tint (multiply) */
+.hero__photo img, .band__photo img, .card__photo img, .svc__thumb img { filter: contrast(1.1); }
+.tint { position: absolute; inset: 0; background: var(--navy); opacity: 0.18; mix-blend-mode: multiply; pointer-events: none; }
+
+/* Photo credits: "Illustrative image" and the photographer, on a charcoal chip */
+.credit {
+  position: absolute; z-index: 2; max-width: calc(100% - 2rem);
+  padding: 0.4rem 0.65rem; background: var(--chip); color: var(--text);
+  font-size: 0.75rem; line-height: 1.35; letter-spacing: 0.01em; border-radius: 2px;
+}
+.credit span { font-weight: 600; }
+
+/* Reticle: four orange corner marks, an inspection frame around a photo */
+.reticle { position: absolute; pointer-events: none; }
+.reticle i { position: absolute; width: 1.1rem; height: 1.1rem; border: 0 solid var(--orange); }
+.reticle i:nth-child(1) { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.reticle i:nth-child(2) { top: 0; right: 0; border-width: 2px 2px 0 0; }
+.reticle i:nth-child(3) { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+.reticle i:nth-child(4) { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+
+/* Buttons: orange ground with charcoal text (6.1:1), an arrow that moves on hover */
+.button, .sampler-cta {
+  display: inline-flex; align-items: center; gap: 0.85em; padding: 0.95em 1.35em;
+  background: var(--orange); color: var(--ground); text-decoration: none; border-radius: 999px;
+  font-weight: 600; font-size: 0.9375rem; line-height: 1.1; letter-spacing: -0.005em;
+  transition: background-color 0.2s;
+}
+.button::after, .sampler-cta::after { content: ""; width: 0.95em; height: 0.6em; flex: none; background: currentColor;
+  clip-path: polygon(0 45%, 72% 45%, 72% 0, 100% 50%, 72% 100%, 72% 55%, 0 55%); transition: transform 0.25s; }
+.button:hover, .sampler-cta:hover { background: var(--orange-hi); }
+.button:hover::after, .sampler-cta:hover::after { transform: translateX(0.25em); }
+.button--ghost { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1px var(--text); }
+.button--ghost::after { display: none; }
+.button--ghost:hover { background: var(--raised); }
+.sampler-cta { font-size: 1.0625rem; padding: 1.05em 1.55em; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 50; height: var(--header-h);
+  display: flex; align-items: center; gap: 2.25rem; padding-inline: var(--edge);
+  background: var(--ground); border-bottom: 1px solid var(--rule);
+}
+.site-header__logo { width: 8.25rem; margin-right: auto; color: var(--text); }
+.fli-logo { width: 100%; height: auto; overflow: visible; fill: currentColor; }
+.site-nav__list { display: flex; gap: 1.9rem; font-size: 0.9375rem; font-weight: 500; }
+.site-nav__list a { text-decoration: none; padding-block: 0.4rem; background: linear-gradient(var(--orange), var(--orange)) no-repeat 0 100% / 0 2px; transition: background-size 0.25s; }
+.site-nav__list a:hover { background-size: 100% 2px; }
+.site-header__contact { font-size: 0.9375rem; font-weight: 600; text-decoration: none; padding: 0.5rem 1rem; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--text); }
+.site-header__contact:hover { background: var(--text); color: var(--ground); }
+@media (max-width: 719.98px) { .site-nav { display: none; } .site-header__logo { width: 7.25rem; } }
+
+/* ---------------------------------------------------------------- 01: the hero
+   The aperture: --t --r --b --l are CSS inset percentages, --rad the corner radius, --sc the photo's
+   scale (aperture.js). Defaults are full bleed. --sh is the shrink progress (0 to 1), --scrim-o the
+   scrim's opacity. main.js writes them; under .js-motion the photo starts as a thin slit. */
+.hero {
+  --t: 0%; --r: 0%; --b: 0%; --l: 0%; --rad: 0px; --sc: 1; --op: 1; --sh: 0; --scrim-o: 1;
+  position: relative; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  height: var(--hero-h); min-height: 30rem; background: var(--ground); overflow: hidden;
+}
+.hero__figure { grid-area: 1 / 1; position: relative; overflow: hidden; clip-path: inset(var(--t) var(--r) var(--b) var(--l) round var(--rad)); }
+.hero__photo { position: absolute; inset: 0; overflow: hidden; }
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; transform: scale(var(--sc)); transform-origin: 70% 55%; }
+.hero__credit {
+  left: calc(var(--l) + 1rem); bottom: calc(var(--b) + 1rem); max-width: calc(100% - var(--l) - var(--r) - 2rem);
+  opacity: clamp(0, calc((var(--op) - 0.85) * 8), 1);   /* shown once the aperture is open */
+}
+.hero__reticle {
+  grid-area: 1 / 1; z-index: 2;
+  top: calc(var(--t) - 0.6rem); right: calc(var(--r) - 0.6rem); bottom: calc(var(--b) - 0.6rem); left: calc(var(--l) - 0.6rem);
+  opacity: clamp(0, calc((var(--sh) - 0.75) * 4), 1);
+}
+
+.hero__inner {
+  grid-area: 1 / 1; position: relative; z-index: 1; min-height: 0;
+  display: grid; grid-template-rows: auto 1fr; padding: 1.25rem var(--edge) calc(var(--hero-h) * 0.14);
+}
+.hero__skip {
+  justify-self: end; align-self: start; display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.45rem 0.8rem; background: var(--chip); color: var(--text); border-radius: 999px;
+  font-size: 0.8125rem; font-weight: 500; text-decoration: none;
+}
+.hero__skip::after { content: ""; width: 0.5rem; height: 0.5rem; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: translateY(-0.15rem) rotate(45deg); }
+.hero__skip:hover { background: var(--ground); }
+
+/* The copy holds the left half: up to the card's left edge (52 percent) less a gap */
+.hero__copy {
+  align-self: end; position: relative; width: calc(46vw - var(--edge)); container-type: inline-size;
+}
+/* The scrim: charcoal at 55 percent, behind the copy only, feathered at its edges by a blur so the
+   text itself always sits on the full 55 percent. It fades once the photo has left the copy. */
+.hero__copy::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: -4.5rem -5rem -4rem calc(-1 * var(--edge) - 4rem);
+  background: var(--scrim); filter: blur(52px); opacity: var(--scrim-o);
+}
+.hero__title {
+  font-size: clamp(3.25rem, min(27cqi, 17.5svh), 13rem); font-weight: 800; line-height: 0.86; letter-spacing: -0.005em;
+  margin-left: -0.02em; max-width: 6.4em; text-wrap: balance;
+}
+.hero__aside { display: grid; gap: 1.4rem; justify-items: start; margin-top: clamp(1.25rem, 3.4svh, 2.25rem); }
+.hero__lede { max-width: 30rem; font-size: 1.0625rem; line-height: 1.5; }
+.hero__action { margin: 0; }
+
+/* Before main.js takes over (motion allowed): the slit, and the headline waiting for its rise.
+   The headline, lede and button are on screen from first paint in every state (the ruling: something
+   finished-looking at first paint); with motion the headline only settles 0.12em into place as the
+   photo settles. main.js removes .js-motion at once; if it never runs, the slit opens at 3 s. */
+.js-motion .hero { --t: 47%; --b: 47%; --sc: 1.15; --op: 0; animation: c-open 0.01s 3s forwards; }
+.js-motion .hero__title { transform: translateY(0.12em); animation: c-settle 0.01s 3s forwards; }
+@keyframes c-open { to { --t: 0%; --b: 0%; --sc: 1; --op: 1; } }
+@keyframes c-settle { to { transform: none; } }
+
+/* Below 640px: no shrink and no pin. The photo stays full width with the headline over its foot,
+   and the lede and button follow below it on charcoal. */
+@media (max-width: 639.98px) {
+  .hero { height: auto; min-height: 0; grid-template: minmax(0, 1fr) auto auto / minmax(0, 1fr); }
+  .hero__figure { grid-area: 1 / 1 / 3 / 2; height: min(68svh, 135vw); min-height: 22rem; }
+  .hero__reticle { display: none; }
+  .hero__credit { left: 0.75rem; top: calc(var(--t) + 0.75rem); bottom: auto; }
+  .hero__inner, .hero__copy { display: contents; }
+  .hero__copy::before { display: none; }
+  .hero__skip { display: none; }
+  .hero__title {
+    grid-area: 2 / 1; z-index: 1; position: relative; isolation: isolate; align-self: end;
+    margin: 0 var(--edge) 1.4rem; font-size: clamp(3rem, 19.5vw, 6.5rem);
+  }
+  .hero__title::before {
+    content: ""; position: absolute; z-index: -1; inset: -1.75rem -1rem -1.4rem -1rem;
+    background: var(--scrim); filter: blur(18px); pointer-events: none;
+  }
+  .hero__aside { grid-area: 3 / 1; margin: 0; padding: 1.6rem var(--edge) 2.75rem; }
+}
+
+/* ---------------------------------------------------------------- sections */
+.sec { padding-block: clamp(4.5rem, 2.5rem + 5.5vw, 8.5rem); }
+.sec + .sec { padding-top: 0; }
+.sec__head { display: grid; gap: 1rem; margin-bottom: clamp(2.5rem, 1.5rem + 4vw, 5rem); }
+.sec__label {
+  display: flex; align-items: center; gap: 0.7rem; color: var(--muted);
+  font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.sec__label::before { content: ""; width: 0.55rem; height: 0.55rem; background: var(--orange); flex: none; }
+.sec__title { font-size: clamp(3.5rem, 1.5rem + 8vw, 10rem); }
+.sec__lede { max-width: 34rem; color: var(--muted); font-size: 1.125rem; line-height: 1.55; }
+.sec__head--split { grid-template-columns: minmax(0, 1fr) minmax(0, 34rem); column-gap: 3rem; align-items: end; }
+.sec__head--split .sec__label { grid-column: 1 / -1; }
+.sec__head--split .sec__lede { padding-bottom: 0.4rem; }
+.sec__head--row { display: flex; justify-content: space-between; align-items: end; gap: 2rem; flex-wrap: wrap; }
+.sec__head--row > div { display: grid; gap: 1rem; }
+@media (max-width: 899.98px) { .sec__head--split { grid-template-columns: minmax(0, 1fr); } }
+
+/* Figures: very large numerals between hairlines, each with an orange tick */
+.figs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); }
+.fig { position: relative; display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 0.75rem; padding: 1.75rem 1.5rem 0 0; }
+.fig + .fig { padding-left: 1.5rem; border-left: 1px solid var(--rule); }
+.fig::before { content: ""; position: absolute; top: -1px; left: 0; width: 2.5rem; height: 3px; background: var(--orange); }
+.fig + .fig::before { left: 1.5rem; }
+.fig__value { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.5rem, 0.5rem + 8vw, 9rem); line-height: 0.85; letter-spacing: -0.01em; }
+.fig__label { color: var(--muted); font-size: 0.9375rem; }
+@media (max-width: 899.98px) {
+  .figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fig:nth-child(3) { padding-left: 0; border-left: 0; }
+  .fig:nth-child(3)::before { left: 0; }
+  .fig:nth-child(n + 3) { margin-top: 2.5rem; border-top: 1px solid var(--rule); }
+}
+
+/* Photo bands: full bleed, revealed through a clip-path as they enter (main.js; once) */
+.band { position: relative; height: clamp(22rem, 76svh, 56rem); overflow: hidden; }
+.band__photo { position: absolute; inset: 0; overflow: hidden; }
+.band__photo img { width: 100%; height: 100%; object-fit: cover; }
+.band--bore .band__photo img { object-position: 50% 50%; }
+.reticle--band { inset: clamp(1rem, 3vw, 2.5rem); }
+.band__credit { right: clamp(1rem, 3vw, 2.5rem); bottom: clamp(1rem, 3vw, 2.5rem); margin: 1.6rem; }
+@media (max-width: 639.98px) { .band { height: clamp(18rem, 56svh, 30rem); } .band__credit { margin: 0.9rem; } }
+
+/* Services: a list of large type. Hover and focus show a thumbnail beside the row (opacity and
+   transform only); the system cursor stays. */
+.svc { border-top: 1px solid var(--rule); counter-reset: svc; }
+.svc li { border-bottom: 1px solid var(--rule); }
+.svc__row {
+  position: relative; display: grid; align-items: center; column-gap: clamp(1rem, 2.5vw, 3rem); row-gap: 0.85rem;
+  grid-template-columns: 3rem minmax(0, 1fr) 16rem 3rem; grid-template-rows: auto auto;
+  padding-block: clamp(1.4rem, 1rem + 1vw, 2.25rem); text-decoration: none;
+}
+.svc__row::before { content: ""; position: absolute; left: 0; top: -1px; width: 100%; height: 1px; background: var(--orange); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.svc__no { grid-row: 1; align-self: start; padding-top: 0.6em; color: var(--muted); font-size: 0.875rem; font-weight: 500; }
+.svc__title { grid-column: 2; grid-row: 1; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem, 1rem + 4.2vw, 5.75rem); line-height: 0.9; letter-spacing: -0.005em; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.svc__text { grid-column: 2; grid-row: 2; max-width: 40rem; color: var(--muted); font-size: 0.9375rem; line-height: 1.5; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.svc__thumb { grid-column: 3; grid-row: 1 / 3; position: relative; width: 16rem; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px;
+  opacity: 0; transform: translateX(-1rem) scale(0.9) rotate(-2deg); transition: opacity 0.3s, transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.svc__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); transform: scale(1.35); }
+.svc__credit { position: absolute; left: 0.4rem; bottom: 0.4rem; max-width: calc(100% - 0.8rem); padding: 0.2rem 0.4rem; background: var(--chip); color: var(--text); font-size: 0.6875rem; line-height: 1.3; border-radius: 2px; }
+.svc__go { grid-column: 4; grid-row: 1 / 3; justify-self: end; width: 3rem; height: 3rem; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--rule); position: relative; transition: background-color 0.25s, box-shadow 0.25s; }
+.svc__go::after { content: ""; position: absolute; inset: 0; margin: auto; width: 1rem; height: 0.65rem; background: var(--text);
+  clip-path: polygon(0 45%, 72% 45%, 72% 0, 100% 50%, 72% 100%, 72% 55%, 0 55%); transition: background-color 0.25s, transform 0.3s; }
+.svc__row:is(:hover, :focus-visible)::before { transform: scaleX(1); }
+.svc__row:is(:hover, :focus-visible) :is(.svc__title, .svc__text) { transform: translateX(0.75rem); }
+.svc__row:is(:hover, :focus-visible) .svc__thumb { opacity: 1; transform: none; }
+.svc__row:is(:hover, :focus-visible) .svc__go { background: var(--orange); box-shadow: none; }
+.svc__row:is(:hover, :focus-visible) .svc__go::after { background: var(--ground); transform: translateX(0.15rem); }
+.svc__row:focus-visible { outline-offset: 0.5rem; }
+@media (max-width: 899.98px) {
+  .svc__row { grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem; }
+  .svc__thumb { display: none; }
+  .svc__go { grid-column: 3; width: 2.5rem; height: 2.5rem; }
+}
+@media (max-width: 639.98px) {
+  .svc__row { grid-template-columns: 1.75rem minmax(0, 1fr) 2.5rem; column-gap: 0.75rem; }
+  .svc__no { padding-top: 0.35em; }
+}
+
+/* Case studies: photo cards. The title link covers the card; the credit sits above it. */
+.link-arrow { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.9375rem; text-decoration: none; padding-bottom: 0.35rem; border-bottom: 1px solid var(--text); }
+.link-arrow::after { content: ""; width: 0.95em; height: 0.6em; background: currentColor; clip-path: polygon(0 45%, 72% 45%, 72% 0, 100% 50%, 72% 100%, 72% 55%, 0 55%); transition: transform 0.25s; }
+.link-arrow:hover::after { transform: translateX(0.25em); }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 2rem); }
+.card { position: relative; display: flex; flex-direction: column; }
+.card__figure { position: relative; order: -1; }
+.card__photo { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 6px; background: var(--raised); }
+.card__photo img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.card__credit { left: 0.75rem; bottom: 0.75rem; }
+.card__meta { margin-top: 1.25rem; color: var(--muted); font-size: 0.875rem; }
+.card__title { position: relative; margin-top: 0.5rem; font-size: clamp(2rem, 1.2rem + 1.6vw, 3rem); font-weight: 700; line-height: 0.95; padding-right: 2.5rem; }
+.card__link { text-decoration: none; }
+.card__link::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: 6px; }
+.card__title::after { content: ""; position: absolute; right: 0.2rem; bottom: 0.35rem; width: 1.1rem; height: 0.7rem; background: var(--text);
+  clip-path: polygon(0 45%, 72% 45%, 72% 0, 100% 50%, 72% 100%, 72% 55%, 0 55%); transition: transform 0.3s; }
+.card:hover .card__photo img, .card:focus-within .card__photo img { transform: scale(1.05); }
+.card:hover .card__title::after, .card:focus-within .card__title::after { transform: translateX(0.3rem); }
+.card:hover .card__link, .card__link:focus-visible { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.12em; }
+.card__link:focus-visible { outline: none; }
+.card__link:focus-visible::after { outline: 2px solid var(--orange); outline-offset: 4px; }
+@media (max-width: 899.98px) {
+  .cards { grid-template-columns: minmax(0, 1fr); gap: 3rem; }
+  .card__photo { aspect-ratio: 16 / 10; }
+}
+
+/* Close */
+.close__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); column-gap: clamp(2rem, 6vw, 6rem); row-gap: 3.5rem; align-items: end; }
+.close__lead { display: grid; gap: 1rem; justify-items: start; }
+.close__title { font-size: clamp(5rem, 1rem + 15vw, 17rem); font-weight: 800; line-height: 0.82; margin-left: -0.03em; }
+.close__lede { max-width: 32rem; font-size: 1.1875rem; line-height: 1.5; margin-top: 1rem; }
+.close__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.close__block { border-top: 1px solid var(--rule); }
+.close__block > div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--rule); }
+.close__block dt { color: var(--muted); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 0.15em; }
+.close__block dd { font-size: 0.9375rem; overflow-wrap: anywhere; }
+@media (max-width: 899.98px) { .close__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--rule); padding-block: 1.75rem 4.5rem; }
+.site-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; align-items: center; }
+.site-footer__nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.9375rem; }
+.site-footer__legal { color: var(--muted); font-size: 0.875rem; }
+
+/* No hover (touch): no thumbnails; rows stay as they are */
+@media (hover: none) { .svc__thumb { display: none; } }
+
+/* Reduced motion: nothing moves on its own; base.css stops transitions */
+@media (prefers-reduced-motion: reduce) {
+  .svc__title, .svc__thumb, .card__photo img { transition: none; }
+}
